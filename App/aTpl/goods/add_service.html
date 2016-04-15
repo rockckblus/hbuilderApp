@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>add_service</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../../Public/css/mui.min.css">
+		<link rel="stylesheet" href="../../../Public/css/component.css" />
+		<link rel="stylesheet" href="../../../Public/css/common.css" />
+		<link rel="stylesheet" href="../../../Public/css/accessorial_service.css" />
+		<link rel="stylesheet" type="text/css" href="../css/swiper/swiper.3.2.0.min.css" />
+	</head>
+
+	<body ng-controller="bodyAll">
+		<topnav></topnav>
+		<div class="mui-content fh" ng-controller="addSrvCtrl" style="background: #F2EEEB">  
+			<div id="content">
+				<div class="mui-content accessorial_service">
+					<div class="r_service_panel" role="panel">
+						<div class="r_singleline_container" role="container" style="display: none;">
+							<strong class="l darkgray"><i class="r_icon_user_gray" role="icon"></i>&nbsp;&nbsp;货主跟车</strong>
+							<strong class="r"><i id="ck_huozhu" class="r_icon_checkbox" role="icon" onclick="changCheck('ck_huozhu')"></i></strong>
+							<div></div>
+						</div>
+						<div class="r_singleline_container" role="container">
+							<strong class="l darkgray"><i class="r_icon_order_gray" role="icon"></i>&nbsp;&nbsp;回单</strong>
+							<strong class="r"><i id="ck_huidan" class="r_icon_checkbox" role="icon" onclick="changCheck('ck_huidan')"></i></strong>
+							<div></div>
+							<div style="clear: both;height: 0;"></div>
+						</div>
+						<div class="r_singleline_container" role="container">
+							<strong class="l darkgray"><i class="r_icon_carry_gray" role="icon"></i>&nbsp;&nbsp;司机协助搬运</strong>
+							<strong class="r"><i id="ck_siji" class="r_icon_checkbox" role="icon" onclick="changCheck('ck_siji')"></i></strong>
+							<div></div>
+						</div>
+						<div class="r_edit_container" role="container">
+							<div>
+								<span id="tip_edittext"><i class="r_icon_edit" role="icon"></i> <strong class="gray">请输入您的其他需求</strong></span>
+								<textarea id="edittext" name="" rows="" cols="" onfocus="clickfocus()" onblur="clickblur()"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+	<script src="../../../Public/js/mui.min.js"></script>
+	<script src="../../../Public/js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../Public/js/sea.js" type="text/javascript" charset="utf-8"></script>
+
+	<script type="text/javascript" charset="utf-8">
+		mui.init();
+	</script>
+
+	<script>
+		seajs.config({
+			debug: false
+		});
+		mui.plusReady(function() {
+			seajs.use(["../../controller/public/seaMain.js", '../../controller/goods/add_service.js'], function() {
+				angular.element(document).ready(function() {
+					angular.bootstrap(window.document, ["city"]); //启动angular
+				})
+			});
+		});
+	</script>
+  
+	<script>
+		function clickfocus() {
+			if (edittext.value == "") {
+				tip_edittext.style.visibility = 'hidden';
+			}
+		}    
+
+		function clickblur() {
+			if (edittext.value == "") {
+				tip_edittext.style.visibility = 'visible';
+			} else {
+				tip_edittext.style.visibility = 'hidden';
+			}
+		}
+ 
+		function changCheck(check_id) {
+			if (document.getElementById(check_id).className == 'r_icon_checkbox') {
+				document.getElementById(check_id).className = 'r_icon_checkbox selected';
+			} else if (document.getElementById(check_id).className == 'r_icon_checkbox selected') {
+				document.getElementById(check_id).className = 'r_icon_checkbox';
+			}
+		}
+	</script>
+
+</html>

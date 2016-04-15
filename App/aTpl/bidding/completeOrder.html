@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="../../../Public/css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../../Public/css/component.css" />
+		<link rel="stylesheet" href="../../../Public/css/common.css" />
+		<link rel="stylesheet" href="../../../Public/css/bidding/order_sub.css" />
+	</head>
+
+	<body>
+		<topnav></topnav> 
+		<div class="mui-content" ng-controller="complete_order" ng-model="showData">
+			<div class="mui-scroll-wrapper scroll_top">
+				<div id="order_pullrefresh" class="mui-scroll">
+					<div class="r_order_list_panel item_top" role="panel" ng-repeat="order in showData">
+						<div class="r_singleline_container" role="container">
+							<span class="l"><strong class="black">订单号：</strong><strong class="black">{{order.deal_code}}</strong></span>
+							<div class="tar"><strong class="gray">{{order.time}}</strong><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+						</div>
+						<div role="container">
+							<small>附加服务：</small><small>{{order.is_receipt}} {{order.unload_need}}</small>
+							<br />
+							<small>货物信息：</small><small>{{order.goods_name}} {{order.goods_weight}}吨 {{order.goods_square}}方</small>
+							<br />
+							<small>承运车辆：</small><small>{{order.car_num}}</small>
+							<br />
+						</div>
+						<div class="r_singleline_container" role="container">
+							<span class="l itemContent" position="{{$index}}"><i class="r_icon_logo" role="icon"></i><span> 物流邦运输协议</span></span>
+							<div class="tar">
+								<span class="gray">成交价格：</span>
+								<span class="red">{{order.pur_money}}</span>
+							</div>
+						</div>
+						<div class="r_segment_button r_col_1" role="button" ng-show="order.goods_class =='1'">
+							<a class="again" position="{{$index}}">再次发货</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="../../../Public/js/mui.min.js"></script>
+		<script src="../../../Public/js/jquery-1.7.2.min.js"></script>
+		<script src="../../../Public/js/sea.js"></script>
+		<script src="../../../Public/js/mui.pullToRefresh.js"></script>
+		<script src="../../../Public/js/mui.pullToRefresh.material.js"></script>
+		<script type="text/javascript" charset="UTF-8">
+			mui.plusReady(function() {
+				seajs.use(["../../controller/public/seaMain.js", '../../controller/bidding/completeOrder.js'], function() {
+					angular.element(document).ready(function() {
+						angular.bootstrap(window.document, ['city']);
+					});
+				});
+			});
+			$(function() {
+				//设置高度
+				var h = $(window).outerHeight();
+				$('body').height(h);
+			});
+			mui('.mui-scroll-wrapper').scroll({
+				deceleration: 0.0005, //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+				bounce: false,
+				indicators: true, //是否显示滚动条
+			});
+		</script>
+
+	</body>
+
+</html>

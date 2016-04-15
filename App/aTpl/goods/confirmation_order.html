@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>发货确认</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../../Public/css/mui.min.css">
+		<link rel="stylesheet" href="../../../Public/css/component.css" />
+		<link rel="stylesheet" href="../../../Public/css/common.css" />
+		<link rel="stylesheet" href="../../../Public/css/goods_message.css" />
+		<link rel="stylesheet" href="../../../Public/css/confirmation_order.css" />
+	</head>
+
+	<body ng-controller="bodyAll" style="background: #F2EEEB;height: auto;padding-bottom: 0;">
+		<topnav></topnav>
+		<div id="scrollAll" class="mui-scroll-wrapper" style="top: 44px;background: #F2EEEB;">
+			<div class="mui-scroll">
+				<div class="mui-content confirmation_order" ng-controller="fahuoCtrl" style="background: #F2EEEB">
+					<div class="mui-content confirmation_order">
+						<!-- 竞拍价格面板 -->
+						<div class="r_bid_price_panel" role="panel">
+							<div>
+								<div class="r_singleline_container" role="container">
+									<label for="">您的出价</label>
+									<div class="tar"><span class="red">{{goods_fare}}</span></div>
+								</div>
+							</div>
+						</div>
+						<!-- 线路信息面板 -->
+						<div class="r_message_panel" role="panel">
+							<div class="r_singleline_container" role="container">
+								<div>
+									<strong class="darkgray"><i class="r_icon_route_gray" role="icon"></i> 路线信息</strong>
+								</div>
+							</div>
+							<div class="r_list" role="list">
+								<ul>
+									<li>
+										<i class="r_icon_drip_green l" role="icon">起</i>
+										<div ng-repeat="obj in startaddLst">
+											<span class="l"></span>
+											<div>
+												<span style="color: #999999;">{{obj.addr}}</span>
+												<br>
+												<small style="color: #BBBBBB;">联系人名：{{obj.psn_name}}  {{obj.psn_tel}}</small>
+												<div style="clear: both;"></div>
+												<small style="color: #BBBBBB;">装货时间：{{obj.time}}</small>
+											</div>
+										</div>
+									</li>
+									<li>
+										<i class="r_icon_drip_red l" role="icon">终</i>
+										<div ng-repeat="obj in endaddLst">
+											<span class="l" ng-if="$index==0">{{$index+1}}-</span>
+											<span class="l" ng-if="$index>0" style="margin-left: 2.5rem;">{{$index+1}}-</span>
+											<div ng-if="$index==0">
+												<span style="color: #999999;">{{obj.addr}}</span>
+												<br>
+												<small style="color: #BBBBBB;">联系人名：{{obj.psn_name}}  {{obj.psn_tel}}</small>
+												<div style="clear: both;"></div>
+												<small style="color: #BBBBBB;">卸货时间：{{obj.time}}</small>
+											</div>
+											<div ng-if="$index>0" style="margin-left: 2.5rem;">
+												<span style="color: #999999;">{{obj.addr}}</span>
+												<br>
+												<small style="color: #BBBBBB;">联系人名：{{obj.psn_name}}  {{obj.psn_tel}}</small>
+												<div style="clear: both;"></div>
+												<small style="color: #BBBBBB;">卸货时间：{{obj.time}}</small>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<!-- 配送信息面板 -->
+						<div class="r_message_panel" role="panel">
+							<div class="r_singleline_container" role="container">
+								<div>
+									<strong class="darkgray"><i class="r_icon_box_gray" role="icon"></i> 货物以及配送信息</strong>
+								</div>
+							</div>
+							<div>
+								<div class="r_singleline_container" role="container" ng-if="car!=''">
+									<span class="l" style="color: #999999;">车型</span>
+									<div class="tar">
+										<span class="gray">{{car}}</span>
+									</div>
+								</div>
+
+								<div class="r_singleline_container no_bottom_border" role="container">
+									<small class="l darkgray" style="color: #999999;">货物</small>
+									<div class="tar">
+										<small id="goods1" style="color: #999999;" ng-if="goods_pic!=''">{{goods_info}}
+											<i class="r_icon_picture_red" role="icon"  id='img_good_pic'></i>
+											<img id="goodsImg"  ng-src="{{goodsImg}}" style="float: left;width: 0;height: 0;"></img>
+										</small>
+										<small id="goods2" style="color: #999999;margin-right: -0.9rem;" ng-if="goods_pic==''">{{goods_info}}
+										</small>
+									</div>
+								</div>
+
+								<div role="container" style="margin-top: 0;padding-top: 0;" ng-if="yixing!=''">
+									<div class="tar"><small>{{yixing}}</small></div>
+								</div>
+								<div role="container" style="margin-top: -1rem;padding-top: 0;" ng-if="yixing==''"></div>
+
+								<div class="r_singleline_container no_bottom_border" role="container" ng-if="service_name!='' || newService!=''">
+									<span class="l" style="color: #999999;">附加服务</span>
+									<div class="tar" style="color: #999999;" ng-if="service_name!=''">
+										<span class="gray" style="color: #999999;">{{service_name}}</span>
+									</div>
+									<div id='add_srv1' class="tar" style="color: #999999;padding-left: 1rem;" ng-if="service_name=='' && newService!=''" style="padding-left: 2rem;padding-right: 2rem;">
+										<span class="gray" style="color: #999999;margin-top: 0.8rem;">{{newService}}</span>
+									</div>
+									<div id='add_srv2' class="tar" style="color: #999999;margin-top: 0.8rem;padding-left: 1rem;margin-bottom: -1rem;" ng-if="service_name!='' && newService!=''" style="padding-left: 2rem;padding-right: 2rem;">
+										<span class="gray" style="color: #999999;">{{newService}}</span>
+									</div>
+								</div>
+
+								<div class="r_singleline_container" role="container" ng-if="car!=''">
+									<span class="l" style="color: #999999;">支付方式</span>
+									<div class="tar">
+										<span class="gray">{{pay_type}}</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="r_singleline_container" role="container" style="display: none;">
+							<strong class="darkgray" style="float: left;"><i class="r_icon_logo" role="icon"></i> 物流邦运输协议</strong>
+							<div class="tar">
+								<span class="gray">查看</span>
+							</div>
+						</div>
+						<a id="btn_fahuo" class="r_border_button" role="button" ng-if="flag==1">确认发布</a>
+					</div>
+
+				</div>
+			</div>
+		</div></body>
+
+	<script src="../../../Public/js/mui.min.js"></script>
+	<script src="../../../Public/js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../Public/js/sea.js" type="text/javascript" charset="utf-8"></script>
+	<!--<script src="http://192.168.0.5:8080/target/target-script-min.js#anonymous" type="text/javascript" charset="utf-8"></script>-->
+
+	<script>
+		seajs.config({
+			debug: false
+		});
+		mui.plusReady(function() {
+			seajs.use(["../../controller/public/seaMain.js", '../../controller/goods/fahuo.js'], function() {
+				angular.element(document).ready(function() {
+					angular.bootstrap(window.document, ["city"]);
+				})
+			});
+		});
+		mui('.mui-scroll-wrapper').scroll({
+			deceleration: 0.0005 //flick
+		});
+	</script>
+
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>我的积分</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../../Public/css/mui.min.css">
+		<link rel="stylesheet" href="../../../Public/css/component.css" />
+		<link rel="stylesheet" href="../../../Public/css/common.css" />
+		<style>
+			.mui-pull-bottom-tips {
+				text-align: center;
+				background-color: #efeff4;
+				font-size: 15px;
+				line-height: 40px;
+				color: #777;
+			}
+		</style>
+	</head>
+ 
+	<body>
+		<topnav></topnav>
+		<div class="mui-content" ng-controller="scoreCtrl">
+			<div class="r_service_panel" role="panel">
+				<div class="r_edit_container" role="container">
+					<div style="width: 100%;height: 5rem;text-align: center;">
+						<label style="color: #999999;font-size: 1rem;">当前兑换积分&nbsp;&nbsp;
+							<label style="color: #e6454a;font-size: 2rem;">{{exchange_score}}</label>
+						</label>
+						<div></div>
+						<label style="color: #999999;font-size: 1rem;">会员等级</label>
+						<img src="../../../Public/images/member/start1.png" style="height: 1rem;margin-bottom: -0.1rem;" ng-if="level==1" />
+						<img src="../../../Public/images/member/start2.png" style="height: 1rem;margin-bottom: -0.1rem;" ng-if="level==2" />
+						<img src="../../../Public/images/member/start3.png" style="height: 1rem;margin-bottom: -0.1rem;" ng-if="level==3" />
+						<img src="../../../Public/images/member/start4.png" style="height: 1rem;margin-bottom: -0.1rem;" ng-if="level==4" />
+						<img src="../../../Public/images/member/start5.png" style="height: 1rem;margin-bottom: -0.1rem;" ng-if="level==5" />
+						<div></div>
+						<label style="color: #999999;font-size: 1rem;">到下一等级还差{{nextstep}}信誉积分</label>
+					</div>
+				</div>
+
+				<div style="margin: 0;padding: 0;height: 3.5rem; background: #f2eeeb;padding-top: 0.5rem;">
+					<div class="r_singleline_container" role="container" style="margin: 0;padding: 0;height: 3rem;">
+						<div id="xinyu" style="width: 50%;text-align: center;height: 100%;padding: 0.9rem;float: left;">
+							<strong id="xinyu_txt" style="color: #e6454a;font-size: 1.1rem;">信誉积分</strong>
+						</div>
+						<div id="duihuan" style="width: 50%;text-align: center;height: 100%;padding: 0.9rem;float: left;border-left: #dedede 1px solid;;">
+							<strong id="duihuan_txt" style="color: #999999;font-size: 1.1rem;">兑换积分</strong>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--<div style="clear: both;"></div>-->
+
+			<div class="mui-scroll-wrapper" style="top: 14rem;">
+				<div id="score_content" class="mui-scroll">
+					<div style="width: 100%;background: #FFFFFF;padding: 0;margin: 0;" ng-if="score_type==1" ng-repeat="obj in log1">
+						<div class="r_singleline_container" role="container" style="padding-left: 1rem;padding-right: 1rem;padding-top: 0.6rem;padding-bottom: 0.6rem;">
+							<strong style="color: #999999;font-size: 1rem;">&nbsp;&nbsp;{{obj.memo}}</strong>
+							<strong class="r" style="color: #999999;margin-top: 01rem;font-size: 1.2rem;">{{obj.credit_score}}</strong>
+							<span style="display: inherit;color: #BBBBBB;">&nbsp;&nbsp;{{obj.time}}</span>
+						</div>
+					</div>
+					<div style="width: 100%;background: #FFFFFF;padding: 0;margin: 0;" ng-if="score_type==2" ng-repeat="obj in log2">
+						<div class="r_singleline_container" role="container" style="padding-left: 1rem;padding-right: 1rem;padding-top: 0.6rem;padding-bottom: 0.6rem;">
+							<strong style="color: #999999;font-size: 1rem;">&nbsp;&nbsp;{{obj.memo}}</strong>
+							<strong class="r" style="color: #999999;margin-top: 01rem;font-size: 1.2rem;">{{obj.exchange_score}}</strong>
+							<span style="display: inherit;color: #BBBBBB;">&nbsp;&nbsp;{{obj.time}}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="../../../Public/js/mui.min.js"></script>
+		<script src="../../../Public/js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../Public/js/sea.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../Public/js/mui.pullToRefresh.js"></script>
+		<script src="../../../Public/js/mui.pullToRefresh.material.js"></script>
+
+		<script>
+			mui.plusReady(function() {
+				seajs.use(["../../controller/public/seaMain.js", '../../controller/member/integral.js'], function() {
+					angular.element(document).ready(function() {
+						angular.bootstrap(window.document, ['city']);
+					});
+				});
+			});
+			$(function() {
+				//设置高度
+				var h = $(window).outerHeight();
+				$('body').height(h);
+			});
+			mui('.mui-scroll-wrapper').scroll({
+				deceleration: 0.0005, //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+				bounce: false,
+				indicators: true, //是否显示滚动条
+			});
+		</script>
+	</body>
+
+</html>

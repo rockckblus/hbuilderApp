@@ -1,0 +1,159 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="HandheldFriendly" content="true"/>
+    <!--<meta name="MobileOptimized" content="320"/>-->
+    <title>Hello H5+</title>
+    <!--<script type="text/javascript" src="../js/common.js"></script>-->
+    <script type="text/javascript">
+        var pays = {};
+        function plusReady() {
+            // 获取支付通道
+            plus.payment.getChannels(function (channels) {
+                var content = document.getElementById('dcontent');
+                var info = document.getElementById("info");
+                var txt = "支付通道信息：";
+                for (var i in channels) {
+                    var channel = channels[i];
+                    pays[channel.id] = channel;
+                    txt += "id:" + channel.id + ", ";
+                    txt += "description:" + channel.description + ", ";
+                    txt += "serviceReady:" + channel.serviceReady + "； ";
+                    var de = document.createElement('div');
+                    de.setAttribute('class', 'button');
+                    de.setAttribute('onclick', 'pay(this.id)');
+                    de.id = channel.id;
+                    de.innerText = channel.description + "支付";
+                    content.appendChild(de);
+                    checkServices(channel);
+                }
+                info.innerText = txt;
+            }, function (e) {
+                outLine("获取支付通道失败：" + e.message);
+            });
+        }
+        document.addEventListener('plusready', plusReady, false);
+        // 检测是否安装支付服务
+        function checkServices(pc) {
+            if (!pc.serviceReady) {
+                var txt = null;
+                switch (pc.id) {
+                    case "alipay":
+                        txt = "检测到系统未安装“支付宝快捷支付服务”，无法完成支付操作，是否立即安装？";
+                        break;
+                    default:
+                        txt = "系统未安装“" + pc.description + "”服务，无法完成支付，是否立即安装？";
+                        break;
+                }
+                plus.nativeUI.confirm(txt, function (e) {
+                    if (e.index == 0) {
+                        pc.installService();
+                    }
+                }, pc.description);
+            }
+        }
+
+        var w = null;
+
+        var PAYSERVER = 'http://city.5656111.com/Member/GetAjax/alipay_test/type/alipay?type=';
+        //         var PAYSERVER='http://demo.dcloud.net.cn/payment/?payid=';
+
+        // 支付
+        function pay(id) {
+            if (w) {
+                return;
+            }//检查是否请求订单中
+            console.log(("----- 请求支付 -----"));
+            var url = PAYSERVER;
+            if (id == 'alipay' || id == 'wxpay') {
+                url += id;
+            } else {
+                plus.nativeUI.alert("不支持此支付通道！", null, "捐赠");
+                return;
+            }
+            url += '&uid=' + plus.runtime.appid + '&total=';
+
+            w = plus.nativeUI.showWaiting();
+            // 请求支付订单
+            var amount = document.getElementById('total').value;
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                switch (xhr.readyState) {
+                    case 4:
+                        w.close();
+                        w = null;
+                        if (xhr.status == 200) {
+                            outLine("----- 请求订单成功 -----");
+                            outLine('服务器返回结果'+xhr.responseText);
+                            var order = xhr.responseText;
+                            plus.payment.request(pays[id], order, function (result) {
+                                outLine("----- 支付成功 -----");
+                                outLine(JSON.stringify(result));
+                                plus.nativeUI.alert("支付成功：感谢你的支持，我们会继续努力完善产品。", function () {
+                                    back();
+                                }, "捐赠");
+                            }, function (e) {
+                                outLine("----- 支付失败 -----");
+                                outLine("[" + e.code + "]：" + e.message);
+                                plus.nativeUI.alert("更多错误信息请参考支付(Payment)规范文档：http://www.html5plus.org/#specification#/specification/Payment.html", null, "支付失败：" + e.code);
+                            });
+                        } else {
+                            outLine("----- 请求订单失败 -----");
+                            outLine(xhr.status);
+                            plus.nativeUI.alert("获取订单信息失败！", null, "捐赠");
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            };
+            xhr.open('POST', url + amount);
+            console.log("请求支付订单：" + url + amount);
+            xhr.send();
+        }
+
+
+        function outLine(str) {
+            console.log(str);
+        }
+
+
+    </script>
+    <style type="text/css">
+        #total {
+            -webkit-user-select: text;
+            text-align: right;
+            padding: 0 1em;
+            border: 0px;
+            border-bottom: 1px solid #ECB100;
+            border-radius: 0;
+            font-size: 16px;
+            width: 30%;
+            outline: none;
+        }
+
+        .button {
+            margin-top: 20px;
+            width: 200px;
+            height: 50px;
+            background-color: #006400;
+        }
+    </style>
+</head>
+<body>
+<div id="dcontent" class="dcontent">
+    <div style="padding: 0 1em;text-align:left">
+        捐赠金额：<input id="total" type="number" value="1"/> 元
+    </div>
+    <br/>
+
+    <div id="info"></div>
+</div>
+</body>
+</html>
+service="mobile.securitypay.pay"&partner="2088411049092356"&_input_charset="UTF-8"&out_trade_no="20160216100335"&subject="物流帮在线支付"&payment_type="1"&seller_id="wuliubang@5656111.com"&total_fee="1"&body="物流帮货主代收货款"&it_b_pay="1d"&notify_url="http%3A%2F%2Fhypay.5656111.com%2Fwalipay%2Fmy_notify.php"&show_url="http%3A%2F%2Fwww.5656111.com"&sign="FdmB%2BgW4X1YRtMkqygfnacqv%2Fyv20FPp2ii%2B78xk8CV%2BcjmZwWs%2BZcP5NW5wUC6843bBfhlR0%2BfjI57DhoFtpMEyWYc0l0KYVsMvRpJAh3Tt6Ul25T%2FGHXUYvm2DHfn18FVLYxGuQEc89kCjfuoYOEdpQUppD7EnSQGIF8DekA4%3D"&sign_type="RSA"
+
+
+service="mobile.securitypay.pay"&partner="2088801273866834"&_input_charset="UTF-8"&out_trade_no="20160216083854"&subject="DCloud项目捐赠"&payment_type="1"&seller_id="payservice@dcloud.io"&total_fee="1"&body="DCloud致力于打造HTML5最好的移动开发工具，包括终端的Runtime、云端的服务和IDE，同时提供各项配套的开发者服务。"&it_b_pay="1d"&notify_url="http%3A%2F%2Fdemo.dcloud.net.cn%2Fpayment%2Falipay%2Fnotify.php"&show_url="http%3A%2F%2Fwww.dcloud.io%2Fhelloh5%2F"&sign="GzKWDBCHL9T64eQ54rBbmDJ4g0Ea4PVaIAh8CVmxqQTmg1XArOIfx0hwu9wUlPx9mLRXvc7B6jreRWDbGFzSl77AXC8bKFkB%2FV5V7FUrbV7qsjx%2FgiWA3OQqegOgN%2FELd7VDfMgWZPFIS9kEk3jeqs8FBeolMrJewFt5s5rnvtk%3D"&sign_type="RSA"

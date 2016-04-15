@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>goods_message</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../../Public/css/mui.min.css">
+		<link rel="stylesheet" href="../../../Public/css/component.css" />
+		<link rel="stylesheet" href="../../../Public/css/common.css" />
+		<link rel="stylesheet" href="../../../Public/css/goods_message.css" />
+		<link rel="stylesheet" type="text/css" href="../css/swiper/swiper.3.2.0.min.css" />
+	</head>
+
+	<body>
+		<topnav></topnav>
+		<div class="mui-content goods_message" ng-controller="addSrvCtrl" style="background: #F2EEEB">
+			<div class="r_goods_message_panel" role="panel" style="padding: 0;margin: 0;">
+				<div class="r_price_text" role="text" style="width: 50%;float: left;border-bottom: #e5e5e5 1px solid;border-right: #e5e5e5 1px solid;line-height: 4rem;padding-top: 0;padding-bottom: 0;">
+					<span class="r">吨</span>
+					<div>
+						<input id="et_dun" type="text" role="text" placeholder="请输入吨数" style="color: #999;">
+					</div>
+				</div>
+				<div class="r_price_text" role="text" style="width: 50%;float: left;border-bottom: #e5e5e5 1px solid;line-height: 4rem;padding-top: 0;padding-bottom: 0;">
+					<span class="r" style="padding-right: 0.86rem;">方</span>
+					<div>
+						<input id="et_fang" type="text" role="text" placeholder="请输入方数" style="color: #999;padding-left: 0.86rem;">
+					</div>
+				</div>
+			</div>
+			<div style="clear: both;"></div>
+
+			<div role="tag_list">
+				<label class="l">货物照片</label>
+
+				<button id="funGoodsPhotoCameraClick" class="mui-icon" style="border: none;float: right;padding-top: 1rem;">
+					<i class="r_icon_camera_gray" role="icon"></i>
+				</button>
+				<div style="clear: both;"></div>
+				<div>
+					<div class="showimg"  ng-show="ui.goods.showImg" id="uiGoodsImgClick" style="margin-top: 20px;">
+						<img id="goodsImg" ng-if="hasImg!=''" ng-src="{{goodsImg}}" style="float: left;width: 100px;height: 100px;border: 3px solid #ffff00"/>
+						<img id="clsImg"   src="../../../Public/images/icon/icon_clear.png" style="float: left;margin-left: -20px;margin-top: -20px;width: 40px;"  />
+					</div>
+				</div>
+			</div> 
+
+			<div style="clear: both;"></div>
+
+			<div class="r_goods_message_panel" role="panel">
+				<div class="r_singleline_container" role="container" style="border-bottom: none;">
+					<div><strong>请选择货物类型</strong></div>
+				</div>
+				<div style="background: #FFFFFF;margin-top: -0.7rem;border-bottom: #e5e5e5 1px solid;">
+					<div id="food" class="r_tag selected" role="tag"><i id='icon_food' class="r_icon_food_gray" role="icon"></i>&nbsp;食品蔬菜</div>
+					<div id="equipment" class="r_tag" role="tag"><i id='icon_equipment' class="r_icon_equipment_gray" role="icon"></i>&nbsp;机械设备</div>
+					<div id="material" class="r_tag" role="tag"><i id='icon_material' class="r_icon_material_gray" role="icon"></i>&nbsp;建材家具</div>
+					<div id="clothes" class="r_tag" role="tag"><i id='icon_clothes' class="r_icon_clothes_gray" role="icon"></i>&nbsp;农林渔牧</div>
+					<div id="abnormity" class="r_tag" role="tag"><i id='icon_abnormity' class="r_icon_abnormity_gray" role="icon"></i>&nbsp;肥料农药</div>
+					<div id="other" class="r_tag" role="tag"><i id='icon_other' class="r_icon_other_gray" role="icon"></i>&nbsp;其他货物</div>
+				</div>
+
+				<div class="r_singleline_container" role="container" style="border-bottom: : #e5e5e5 1px solid;height: 5.5rem">
+					<img id="chk_yixing" src='../../../Public/images/btn_check.png' style="margin-left:0.3rem;margin-top: 0.5rem;width: 2rem;height:2rem;float: left;" />
+					<label id="lbl_yixing" style="width: 3.5rem;height: 100%;float: left;margin-top: 0.3rem;margin-left:0.5rem;margin-top: 0.7rem;float: left;">异形件</label>
+
+					<div style="margin-left: 0rem;margin-bottom: 0;height: 2.5rem;width: 14rem;float: right;padding-left: 0;">
+						<input id="ed_gao" type="number" placeholder="高" style="color: #999;width: 4rem;height: 2.5rem;margin-left: 0.5rem;padding-bottom: 0;padding-right: 0.5rem;text-align: right;float: right;" onfocus="setYixing()" onblur="blurYixing()" />
+						<input id="ed_kuan" type="number" placeholder="宽" style="color: #999;width: 4rem;height: 2.5rem;margin-left: 0.5rem;padding-bottom: 0;padding-right: 0.5rem;text-align: right;float: right;" onfocus="setYixing()" onblur="blurYixing()" />
+						<input id="ed_chang" type="number" placeholder="长" style="color: #999;width: 4rem;height: 2.5rem;margin-left: 0.5rem;padding-bottom: 0;padding-right: 0.5rem;text-align: right;float: right;" onfocus="setYixing()" onblur="blurYixing()" />
+					</div>
+					<label  style="height: 100%;width:100%;margin-top: -1.2rem;text-align: right;color: #bbb;font-size: 0.8rem;">对于异形件，长宽高至少需要输入一项</label>
+				</div> 
+			</div>
+
+			<div class="r_edit_container" role="container" style="display: none;">
+				<div>
+					<span id="text_yaoqiu"><i  class="r_icon_edit" role="icon" style="margin-left: 1rem;"></i> <strong class="gray" style="color: #BBBBBB;">您可以在此补充描述货物</strong></span>
+					<textarea id="et_yaoqiu" style="padding-left: 1rem;padding-right: 1rem;" name="" rows="" cols="" onfocus="focusText('et_yaoqiu','text_yaoqiu')" onblur="blurText('et_yaoqiu','text_yaoqiu')"></textarea>
+				</div>
+			</div>
+		</div>
+		<div id="uiGoodsMaskClick" ng-show="ui.goods.maskShow" style="display: none;width: 100%;height: 100%;background-color: #000;position: fixed;z-index: 5000;opacity: 0.9;top:0;left:0;"></div>
+	</body>
+
+	<script src="../../../Public/js/mui.min.js"></script>
+	<script src="../../../Public/js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../Public/js/sea.js" type="text/javascript" charset="utf-8"></script>
+
+	<script type="text/javascript" charset="utf-8">
+		mui.init();
+	</script>
+
+	<script>
+		seajs.config({
+			debug: false
+		});
+		mui.plusReady(function() {
+			seajs.use(["../../controller/public/seaMain.js", '../../controller/goods/goods_message.js'], function() {
+				angular.element(document).ready(function() {
+					angular.bootstrap(window.document, ["city"]); //启动angular
+				})
+			});
+		});
+	</script>
+
+	<script>
+		//		function selectType(select_id) {
+		//			var listId = ['food', 'equipment', 'material', 'clothes', 'abnormity', 'other'];
+		//			for (var i = 0; i < listId.length; i++) {
+		//				if (document.getElementById(listId[i]) == document.getElementById(select_id)) {
+		//					if (document.getElementById(listId[i]).className == 'r_tag') {
+		//						document.getElementById(listId[i]).className = 'r_tag selected';
+		//					}
+		//				} else if (document.getElementById(listId[i]) != document.getElementById(select_id)) {
+		//					document.getElementById(listId[i]).className = 'r_tag';
+		//				}
+		//			}
+		//		}
+		
+				function focusText(id1, id2) {
+					document.getElementById(id2).style.visibility = 'hidden';
+				}
+		
+				function blurText(id1, id2) {
+					if (document.getElementById(id1).value == "") {
+						document.getElementById(id2).style.visibility = 'visible';
+					} else {
+						document.getElementById(id2).style.visibility = 'hidden';
+					}
+				}
+		
+				function setFocusText(id, defaultTxt) {
+					if (document.getElementById(id).value == defaultTxt) {
+						document.getElementById(id).value = "";
+						document.getElementById(id).style.color = "#999999";
+					}
+				} 
+				
+				function setBlurText(id, defaultTxt) {
+					if (document.getElementById(id).value == "") {
+						document.getElementById(id).value = defaultTxt;
+						document.getElementById(id).style.color = '#BBBBBB';
+					} 
+				}
+				
+				function setYixing(){
+					document.getElementById('chk_yixing').src='../../../Public/images/btn_check_c.png';
+				}
+				
+				function blurYixing(){
+					if (document.getElementById('ed_chang').value=="" && document.getElementById('ed_kuan').value=="" && document.getElementById('ed_gao').value==""){
+						document.getElementById('chk_yixing').src='../../../Public/images/btn_check.png';	
+					}else{
+						document.getElementById('chk_yixing').src='../../../Public/images/btn_check_c.png';
+					}
+				}
+	</script>
+
+</html>

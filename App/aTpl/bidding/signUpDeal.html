@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<!--签署竞价协议-->
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="../../../Public/css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../../Public/css/component.css" />
+		<link rel="stylesheet" href="../../../Public/css/common.css" />
+
+		<!--自己写的css样式-->
+		<link rel="stylesheet" href="../../../Public/css/bidding/signup.css" />
+	</head>
+
+	<body class="content_bg">
+		<topnav></topnav>
+		<div class="mui-content content_top"  ng-controller="signUpCtrl">
+			<div class="r_settlement_panel">
+				<div class="r_singleline_container" role="container">
+					<label class="l" for="">发布货源</label>
+					<div class="tar">
+						<span class="gray" style="color: #999999;">{{goods_type}}</span>
+					</div>
+				</div>
+				<div class="r_singleline_container" role="container">
+					<label class="l" for="">承运车辆</label>
+					<div class="tar">
+						<span class="gray" style="color: #999999;">{{car_num}}</span>
+					</div>
+				</div>
+				<div class="r_singleline_container" role="container">
+					<label for="">运输费用</label>
+					<div class="tar">
+						<span class="red" ng-if="goods_class=='1'">￥{{pur_money}}</span>
+						<span class="red" ng-if="goods_class=='21'">{{disp_money}}</span>
+					</div>
+				</div>
+				<div class="r_singleline_container" role="container">
+					<label for="">结算方式</label>
+					<div class="tar">
+						<span class="gray" style="color: #999999;">{{pay_type}}</span>
+					</div>
+				</div>
+			</div>
+
+			<!--验证码输入按钮-->
+			<!--<div class="r_pin_text security_top" role="text">
+				<label class="r" for=""><small class="red">获取验证码</small></label>
+				<div><input type="text" role="text" placeholder="输入验证码" style="color: #999999;" /></div>
+			</div>-->
+
+			<!--物流邦货物运输协议-->
+			<div class="r_simple_container trans_deal_top" role="container">
+				<i class="r_icon_checkmark_red" role="icon"></i>&nbsp;
+				<small id="detail">物流邦货物运输协议</small>
+			</div>
+
+			<!--物流邦确认支付-->
+			<a id="dosign" class="r_border_button " role="button">确认签署</a>
+		</div>
+	</body>
+
+	<script src="../../../Public/js/mui.min.js"></script>
+	<script src="../../../Public/js/jquery-1.7.2.min.js"></script>
+	<script src="../../../Public/js/sea.js"></script>
+
+	<script type="text/javascript" charset="utf-8">
+		mui.plusReady(function() {
+			seajs.use(["../../controller/public/seaMain.js", '../../controller/bidding/signUpDeal.js'], function() {
+				angular.element(document).ready(function() {
+					angular.bootstrap(window.document, ['city']);
+				});
+			});
+		});
+		$(function() {
+			//设置高度
+			var h = $(window).outerHeight();
+			$('body').height(h);
+		});
+	</script>
+
+</html>

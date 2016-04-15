@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../../Public/css/mui.min.css">
+		<link rel="stylesheet" href="../../../Public/css/component.css" />
+		<link rel="stylesheet" href="../../../Public/css/common.css" />
+		<link rel="stylesheet" href="../../../Public/css/fh.css" />
+		<link href="../../../Public/css/mui.picker.css" rel="stylesheet" />
+		<link href="../../../Public/css/mui.poppicker.css" rel="stylesheet" />
+	</head>
+
+	<body ng-controller="bodyAll" style="background: #F2EEEB;height: auto;padding-bottom: 0;">
+		<topnav></topnav>
+		<div id="scrollAll" class="mui-scroll-wrapper" style="top: 44px;background: #F2EEEB;">
+			<div class="mui-scroll">
+				<div class="mui-content fh" ng-controller="fahuoCtrl" style="background: #F2EEEB">
+					<div id="content">
+						<!--地址输入控件 获取预加载 addArea.html ,封装到directive addarea 里面，一个页面只能加载一次这个控件，
+							所以使用时候 addarea 注入时候，注意作用域的位置,此处是发货地址，和收货地址 div  
+							声明的时候 把 绑定的class 传过去 click的 value值 取 属性 attrClcikVal 可把参数 写入 {{obj}}里面, 
+							重新绑定的自定义事件 名称 为 resBind
+       				 		addClickValType 为类型 是需要编辑的 ，还是 需要新加的 此处已经不需要 判断 是否起始地，
+       				 		因为默认 已经 有起始地 地址，直接视为编辑
+							startEnd('start','end')  addClickValType('add','edit')
+       	 				-->
+						<div class="r_address_list_1" role="list" addareapre="addArea">
+							<ul>
+								<!-- 发货地址 -->
+								<i class="r_icon_drip_green" role='icon'>起</i>
+								<li ng-repeat="obj in startaddLst" class="editArea" ng-class="addArea" addClcikVal="{{obj}}" addClickValType="edit" startEnd="start">
+									<div>
+										<i addClcikVal="{{obj}}" class="r_icon_add_gray" ng-class="addArea" role="icon" ng-if="$index==0" style="display: none;"></i>
+										<strong style="color: #999999;">{{obj.addr}}</strong>
+										<span style="display: inherit;margin-top:-5px;color: #BBBBBB;">{{obj.time}}  
+											<i class="r_icon_cn_ruyue" ng-class="addArea" addClcikVal="{{obj}}"
+                                               ng-if="obj.state=='01'" style="display: none;"></i>
+											<i class="r_icon_cn_jinkuai" ng-class="addArea" addClcikVal="{{obj}}"
+                                               role="icon" ng-if="obj.state=='02'" style="display: none;"></i>
+											<i class="r_icon_urgency " ng-class="addArea" addClcikVal="{{obj}}"
+                                               role="icon" ng-if="obj.state=='03'" style="display: none;"></i>
+									</span>
+									</div>
+								</li>
+							</ul>
+							<ul>
+								<i class="r_icon_drip_red" role='icon'>终</i>
+								<i class="r_icon_round_gray" role='icon'></i>
+								<li ng-repeat="obj in endaddLst">
+									<div>
+										<!--<i class="r_icon_reduce_gray" role="icon" position="{{$index}}" ng-if="$index<endaddLstNums"></i>-->
+										<i class="r_icon_reduce_gray" role="icon" position="{{$index}}" ng-if="endaddLst.length>1"></i>
+
+										<!--<i class="r_icon_add_gray" role="icon" ng-class="addArea" addClcikVal="{{obj}}" addClickValType='add' startEnd="end" ng-if="$index==endaddLstNums"></i>-->
+ 
+										<!--<strong style="color: #999999;" class="editArea" ng-class="addArea" addClcikVal="{{obj}}" addClickValType="edit" startEnd="end">{{obj.addr}}</strong>-->
+										<strong style="color: #999999;" class="editArea" ng-class="addArea" addClcikVal="{{obj}}" addClickValType="edit" startEnd="end">卸{{obj.no}}：{{obj.addr}}</strong>
+										<!--<strong  ng-if="$index==endaddLst.length-1" style="color: #bbb;" class="addArea" ng-class="addArea" addClcikVal="{{obj}}"  addClickValType="add" startEnd="end">卸{{$index+1}}：{{obj.addr}}</strong>-->
+
+										<span style="display: inherit;margin-top:-5px;color: #BBBBBB;" class="editArea" ng-class="addArea" addClcikVal="{{obj}}" addClickValType="edit" startEnd="end">{{obj.time}}
+											<i class="r_icon_cn_ruyue" role="icon" ng-if="obj.state=='01'"
+                                               style="display: none;"></i>
+											<i class="r_icon_cn_jinkuai" role="icon" ng-if="obj.state=='02'"
+                                               style="display: none;"></i>
+											<i class="r_icon_urgency" role="icon" ng-if="obj.state=='03'"
+                                               style="display: none;"></i>
+										</span>
+									</div> 
+								</li>
+								<div style="padding-top: 1rem;padding-bottom: 1rem;">
+									<span style="color: #bbb;margin-left: 3rem;" class="addArea" ng-class="addArea" addClcikVal="{{lastAddr}}" addClickValType="add" startEnd="end">卸{{endaddLst.length+1}}：点击增加卸货地址</span>
+								</div> 
+							</ul>
+						</div>
+						<div id='down_part' ng-show="ui.more.downPart">
+							<div role="tag_list">
+								<label class="l">车型选择</label>
+
+								<div class="r" role="stepper" style="display: none;">
+									<a id="funCarNumAdd" class="reduce">+</a>
+									<input id="carnums" readonly="readonly" type="text" ng-model="car_qty" style="color: #999999;" />
+									<a id="funCarNumReduce" class="add">-</a>
+								</div> 
+								<div id="funCarPiker">
+									<div class="r_tag" role="tag">{{car_type}}</div>
+									<div class="r_tag" role="tag" ng-if="car_shape!=0">{{car_shape}}</div>
+								</div>
+							</div>
+							<div role="tag_list">
+								<label class="l">货物信息</label>
+
+								<!--<button id="funGoodsPhotoCameraClick" class="mui-icon">
+                    <i class="r_icon_camera_gray" role="icon"></i>
+                </button>-->
+								<div id="goodsTap" style="margin: 0;padding: 0;">
+									<div role="tag" id="funGoods">{{goods_type}}</div>
+									<div class="r_simple_tag" role="tag" ng-if="weight!=''" style="font-size: 1.05rem;color:#999999;">{{weight}}吨</div>
+									<div class="r_simple_tag" role="tag" ng-if="volume!=''" style="font-size: 1.05rem;color:#999999;">{{volume}}方</div>
+									<i id='img_good_pic' class="r_icon_picture_red" role="icon" ng-if="goods_pic!=''" style="float: right;margin-top: 0.6rem;"></i>
+
+									<div style="height: 2rem;" ng-if="yixing!=''">
+										<strong style="color: #999999;font-size: 1rem;font-weight: normal;">{{yixing}}</strong>
+									</div>
+								</div>
+							</div>
+							<div role="tag_list">
+								<label class="l">附加服务</label>
+
+								<div id="service_plus">
+									<div class="r_tag" role="tag" ng-repeat="sitem in serviceLst">{{sitem.service_name}}</div>
+									<div id='add_srv1'>
+										<br id='add_srv_br' />
+
+										<div class="r_simple_tag" ng-if="newService!=''">{{newService}}</div>
+									</div>
+									<div id='add_srv2'>
+										<div class="r_simple_tag" ng-if="newService!=''" style="color: #999999;margin-top:0.4rem ;">{{newService}}
+										</div>
+									</div>
+								</div>
+							</div>
+							<div role="tag_list">
+								<label class="l">支付方式</label>
+								<div id="pay_type">
+									<div class="r_tag" role="tag">{{pay_type}}</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="clearThis" style="width: 100%;text-align: center">
+							<button class="xialaDown" id="funDownScrollsendFundownDownPartShow"></button>
+						</div>
+
+						<div class="r_price_text" role="text" style="margin-top: 20px">
+							<label>您的出价</label>
+
+							<div>
+								<input id="tran_price" type="number" role="text" ng-model="price" style="padding-right: 2rem;color: red;font-size: 2rem" />
+							</div>
+						</div>
+						<div style="padding: 1rem;">
+							<label style="color: #e6454a;">如果您不清楚货运价格，可以不填写价格，等待司机竞价。</label>
+						</div>
+						
+						<a class="r_border_button" role="button">发布货源</a>
+						<a class="r_bid_button" role="button" style="display: none;"><span>我的竞价</span></a>
+					</div>
+
+					<div id="uiGoodsMaskClick" ng-show="ui.goods.maskShow" style="width: 100%;height: 100%;background-color: #000;position: fixed;z-index: 5000;opacity: 0.9;top:0;left:0;"></div>
+				</div>
+			</div>
+		</div>
+		<img public tapimg moveobj="history" id="history" src="../../../Public/images/fahuo/fahuo_tip.png" trueNet='true' style="position:fixed;width: 84px;height: 56px;bottom:40px;right:20px;z-index: 800" />
+	</body>
+
+	<script src="../../../Public/js/mui.min.js"></script>
+	<script src="../../../Public/js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../Public/js/sea.js" type="text/javascript" charset="utf-8"></script>
+	<!--<script src="http://192.168.0.5:8080/target/target-script-min.js#anonymous" type="text/javascript" charset="utf-8"></script>-->
+
+	<script>
+		seajs.config({
+			debug: false
+		});
+		mui.plusReady(function() {
+			seajs.use(["../../controller/public/seaMain.js", '../../controller/goods/line_index.js'], function() {
+				angular.element(document).ready(function() {
+					angular.bootstrap(window.document, ["city"]);
+				})
+			});
+		});
+		mui('.mui-scroll-wrapper').scroll({
+			deceleration: 0.0005 //flick
+		});
+	</script>
+
+</html>

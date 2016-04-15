@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>发货草稿</title>
+		<link rel="stylesheet" href="../../../Public/css/mui.min.css">
+		<link rel="stylesheet" href="../../../Public/css/component.css" />
+		<link rel="stylesheet" href="../../../Public/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../css/swiper/swiper.3.2.0.min.css" />
+		<link rel="stylesheet" href="../../../Public/css/bidding/bidding_sub.css" />
+	</head>
+
+	<body>
+		<topnav></topnav>
+		<div class="mui-content" ng-controller="draftCtrl" style="background: #F2EEEB">
+			<div class="mui-scroll-wrapper" style="top: 44px;background: #F2EEEB;">
+				<div id="bidding_content" class="mui-scroll">
+					<div class="r_mybid_panel" style="margin-top: 0.5rem;" role="panel" ng-repeat="obj in dragLst">
+						<div class="r_singleline_container" role="container">
+							<span class="l"><span style="color:#999999;">名称：{{obj.name}}</span></span>
+							<div class="tar"><span class="gray"></span></div>
+						</div>
+						<div class="r_singleline_container" role="container">
+							<span class="l">
+								<span style="color:#999999;" ng-if="obj.goods_class=='1'">我的出价：{{obj.price}}</span>
+							<span style="color:#999999;" ng-if="obj.goods_class=='21'">每日出价：{{obj.price}}</span>
+							</span>
+							<div class="tar"><span class="gray" style="color:#999999;">{{obj.date}}</span></div>
+						</div>
+						<div class="r_singleline_container" role="container" style="height: 5rem;">
+							<span class="l"><span style="color:#999999;">货物信息：{{obj.goodsInfo}}</span></span>
+							<div></div>
+							<span class="l"><span style="color:#999999;">车辆信息：{{obj.car_type}}</span></span>
+						</div>
+
+						<div class="r_label_container" role="container" >
+							<label for="" style="margin-left: 0.8rem;"><span style="color:#999999;">装货地址：</span></label>
+							<div><small>{{obj.startAdr}}</small></div>
+						</div> 
+						  
+						<div class="r_label_container" role="container" >
+							<label for="" style="margin-left: 0.8rem;"><span style="color:#999999;">卸货地址：</span></label>
+							<div ng-repeat="objAdr in obj.endaddLst"><small>{{objAdr}}</small></div>
+						</div>
+
+						<div class="r_segment_button" role="button">
+							<a class="btn_del" position="{{$index}}">删除</a>
+							<a class="btn_push" position="{{$index}}">发布</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+
+	<script src="../../../Public/js/mui.min.js"></script>
+	<script src="../../../Public/js/jquery-1.7.2.min.js"></script>
+	<script src="../../../Public/js/sea.js"></script>
+
+	<script type="text/javascript" charset="utf-8">
+		mui.init();
+	</script>
+
+	<script type="text/javascript" charset="utf-8">
+		mui.plusReady(function() {
+			seajs.use(["../../controller/public/seaMain.js", '../../controller/bidding/draftGoods.js'], function() {
+				angular.element(document).ready(function() {
+					angular.bootstrap(window.document, ['city']);
+				});
+			});
+		});
+		$(function() {
+			//设置高度
+			var h = $(window).outerHeight();
+			$('body').height(h);
+		});
+		mui('.mui-scroll-wrapper').scroll({
+			deceleration: 0.0005, //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+			bounce: false,
+			indicators: true, //是否显示滚动条
+		});
+	</script>
+
+</html>

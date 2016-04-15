@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>头像编辑</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="assets/css/gallery.css">
+</head>
+<html>
+<body ng-click="bodyAll">
+
+<div class="allDiv" ng-controller="gallery">
+
+    <div id="showImgGroup" class="clear">
+        <div class="topDiv"></div>
+
+        <div class="positonDiv">
+            <div class="mark1">
+                <img src="../../../../../../Public/images/leftNav/mark100.png"/>
+            </div>
+            <div class="preview"></div>
+        </div>
+
+        <div class="topDiv2">头像预览</div>
+
+        <div id="cutDiv">
+            <div class="drw">
+                <img id="image" class="img-responsive" ng-src="{{myImage}}" alt="Picture">
+            </div>
+        </div>
+
+        <div id="downBut">
+            <span class="left mui-action-back">取消</span>
+            <span class="right" id="selectImg">选取</span>
+        </div>
+
+    </div>
+
+</div>
+
+
+</body>
+<link rel="stylesheet" href="../../../../../../Public/css/mui.min.css">
+<link rel="stylesheet" href="dist/cropper.min.css">
+<script src="../../../../../../Public/js/jquery-1.7.2.min.js"></script>
+<script src="../../../../../../Public/js/mui.min.js"></script>
+<script src="../../../../../../Public/js/sea.js"></script>
+<script src="dist/cropper.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+    seajs.config({
+        debug: false
+    });
+    mui.plusReady(function () {
+        seajs.use(["../../../../../controller/public/seaMain.js", './gallery2.js'], function () {
+            angular.element(document).ready(function () {
+                angular.bootstrap(window.document, ["city"]); //启动angular
+            })
+        })
+    })
+</script>
+</html>
+
+
+
+

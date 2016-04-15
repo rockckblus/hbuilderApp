@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../../../Public/css/mui.min.css">
+    <link rel="stylesheet" href="../../../Public/css/component.css"/>
+    <link rel="stylesheet" href="../../../Public/css/common.css"/>
+    <link rel="stylesheet" href="../../../Public/css/fh.css"/>
+    <link href="../../../Public/css/mui.picker.css" rel="stylesheet"/>
+    <link href="../../../Public/css/mui.poppicker.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../../../Public/css/goods/touchThreeFh.css"/>
+</head>
+
+<body ng-controller="bodyAll">
+<topnav></topnav>
+<div class="mui-content" ng-controller="touchTest">
+    <div id="content">
+        <button id="sub">sub</button>
+    </div>
+
+
+    分两个 模板 目前 是1 ，调用 子控件 名称 为 tpl-one tpl-two ,数据 都在 sever里面，代码里面有 todo的是 需要 判断日期的地方，和一些业务逻辑的 "sub" 为传值响应 弹出面板 的 id
+
+    <touch-three-fh tpl-one="sub"></touch-three-fh>
+</div>
+</body>
+
+<script src="../../../Public/js/mui.min.js"></script>
+<script src="../../../Public/js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../Public/js/sea.js" type="text/javascript" charset="utf-8"></script>
+<!--<script src="http://192.168.0.5:8080/target/target-script-min.js#anonymous" type="text/javascript" charset="utf-8"></script>-->
+
+<script type="text/javascript" charset="utf-8">
+    mui.init();
+</script>
+
+<script>
+    seajs.config({
+        debug: false
+    });
+    mui.plusReady(function () {
+        seajs.use(["../../controller/public/seaMain.js", '../../controller/goods/touchTest.js'], function () {
+            angular.element(document).ready(function () {
+                angular.bootstrap(window.document, ["city"]); //启动angular
+            })
+        });
+    });
+</script>
+
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="../../../Public/css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../../Public/css/component.css" />
+		<link rel="stylesheet" href="../../../Public/css/common.css" />
+		<link rel="stylesheet" href="../../../Public/css/bidding/order_sub.css" />
+	</head>
+
+	<body>
+		<topnav></topnav>
+		<div class="mui-content" ng-controller="mine_order" ng-model="showData">
+			<div class="mui-scroll-wrapper scroll_top">
+				<div id="order_pullrefresh" class="mui-scroll">
+					<div class="r_order_list_panel item_top" role="panel" ng-repeat="order in showData">
+						<div class="r_singleline_container" role="container">
+							<span class="l"><strong class="black">订单号：</strong><strong class="black">{{order.deal_code}}</strong></span>
+							<div class="tar"><strong class="red">{{order.is_transport}}</strong><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+							<i id="order_gps" class="r_icon_gps" role="icon" go-baidu-map lat="{{order.car_lat}}" lng="{{order.car_lng}}"></i>
+						</div>
+						<div role="container">
+							<small>附加服务：</small><small>{{order.is_receipt}} {{order.unload_need}}</small>
+							<br />
+							<small>货物信息：</small><small>{{order.goods_name}} {{order.goods_weight}}吨 {{order.goods_square}}方</small>
+							<br />
+							<small>承运车辆：</small><small>{{order.car_num}}</small>
+							<br />
+							<small>装货时间：</small><small>{{order.load_time}}</small>
+							<br />
+						</div>
+						<div class="r_singleline_container" role="container">
+							<span class="l itemContent" position="{{$index}}"><i class="r_icon_logo" role="icon"></i><span> 物流邦运输协议</span></span>
+							<div class="tar">
+								<span class="gray">成交价格：</span>
+								<span class="red">{{order.pur_money}}</span>
+							</div>
+						</div>
+						<div class="r_segment_button r_col_3" role="button">
+							<a class="complaint" position="{{$index}}">申诉</a>
+							<a class="contact" position="{{$index}}">联系司机</a>
+							<a class="confirm" position="{{$index}}">确认收货  </a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="blackTrans" class="black-trans"></div>
+			<div id="complaintsDialog" class="r_popupbox_panel dialog-style-complaint" role="panel">
+				<div class="r_simple_container" role="container">
+					<strong style="font-size: large;">请选择投诉项目</strong>
+				</div>
+				<div class="r_list" role="list" >
+					<ul style="height: 200px;overflow-y: scroll;">
+						<li ng-repeat="complaint in complaints" ng-click="selectComplaint($index)"> 
+							<i class="{{complaint.classType}}" role="icon"></i>
+							<div> 
+								<span>&nbsp;&nbsp;&nbsp;{{complaint.content}}</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div id="complaintConfirm" role="button">确认投诉</div>
+				<div id="complaintCancel" class="button_cancel"></div>
+			</div>
+
+			<div id="contactDialog" class="r_popupbox_panel dialog-style-contact" role="panel">
+				<div class="head_portrait">
+					<div>
+						<div>
+							<div style="background-image: url(../../../Public/images/driver/defalut_driver_icon.png);"></div>
+						</div>
+						<!--<span></span>-->
+					</div>
+					<!--<i class="r_icon_crown_gold" role="icon"></i>-->
+				</div>
+				<div class="r_simple_container" role="container">
+					<strong id="driverName">王师傅</strong>
+				</div>
+				<div class="list">
+					<div class="r_singleline_container no_bottom_border" role="container">
+						<div>
+							<span class="gray">承运车辆 </span>
+							<span class="gray">车型</span>
+							<span class="gray">等级</span> 
+						</div>
+					</div>
+					<div class="r_singleline_container no_bottom_border" role="container">
+						<div>
+							<span id="car_num">津K8956</span>
+							<span id="car_type" >轻型卡车</span>
+							<span id="is_transport" >
+								<i id="evalu" class="r_icon_gold_5" role="icon"></i>
+								<i id="growth" class="r_icon_yunli_gao" role="icon"></i>
+							</span>
+						</div>
+					</div>
+				</div>
+				<div id="callPhone" role="button">拨打电话</div>
+				<div id="contactCancel" class="button_cancel"></div>
+			</div>
+
+			<div id="confirmDialog" class="r_popupbox_panel dialog-style-arrive" role="panel">
+				<div class="img"></div>
+				<div class="r_simple_container" > 
+					<span>请您确定货物已经送达后，点击按钮确认送达</span>
+				</div>
+				<div id="confirArrive" role="button">确认送达   </div>
+				<div id="confirmCancel" class="button_cancel"></div>
+			</div>
+		</div>
+
+		<script src="../../../Public/js/mui.min.js"></script>
+		<script src="../../../Public/js/jquery-1.7.2.min.js"></script>
+		<script src="../../../Public/js/sea.js"></script>
+		<script src="../../../Public/js/mui.pullToRefresh.js"></script>
+		<script src="../../../Public/js/mui.pullToRefresh.material.js"></script>
+		<script type="text/javascript" charset="UTF-8">
+			mui.plusReady(function() {
+				seajs.use(["../../controller/public/seaMain.js", '../../controller/bidding/mineOrder.js', '../../directive/js/default/block/block.goBaiduMap.directive.js'], function() {
+					angular.element(document).ready(function() {
+						angular.bootstrap(window.document, ['city']);
+					});
+				});
+			});
+			$(function() {
+				//设置高度
+				var h = $(window).outerHeight();
+				$('body').height(h);
+			});
+			mui('.mui-scroll-wrapper').scroll({
+				deceleration: 0.0005, //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+				bounce: false,
+				indicators: true, //是否显示滚动条
+			});
+		</script>
+
+		<!--<script type="text/javascript" src='http://192.168.1.146:8080/target/target-script-min.js#anonymous'/>-->
+	</body>
+
+</html>

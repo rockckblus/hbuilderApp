@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+ 
+	<head>
+		<meta charset="utf-8">
+		<title>score_rule</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../../Public/css/mui.min.css">
+		<link rel="stylesheet" href="../../../Public/css/component.css" />
+		<link rel="stylesheet" href="../../../Public/css/common.css" />
+	</head>
+
+	<body>
+		<topnav></topnav>
+		<div class="mui-content" ng-controller="ruleCtrl">
+			<div id="content">
+				<img id='ruletop' style="width: 100%;height: auto;" src='{{banner}}'/>
+				<img id='ruletop' style="width: 100%;height: auto;" src='{{context}}'/>
+			</div>
+		</div>
+	</body>
+
+	<script src="../../../Public/js/mui.min.js"></script>
+	<script src="../../../Public/js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../Public/js/sea.js" type="text/javascript" charset="utf-8"></script>
+
+	<script type="text/javascript" charset="utf-8">
+		mui.init();
+	</script>
+
+	<script>
+		seajs.config({
+			debug: false
+		});
+		mui.plusReady(function() {
+			seajs.use(["../../controller/public/seaMain.js", '../../controller/member/scorerule.js'], function() {
+				angular.element(document).ready(function() {
+					angular.bootstrap(window.document, ["city"]); //启动angular
+				})
+			});
+		});
+	</script>
+
+</html>

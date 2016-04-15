@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>leftNav</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="../../../../../../Public/css/mui.min.css">
+    <link rel="stylesheet" href="../../../../../../Public/css/leftNav/leftNav.css">
+</head>
+<body ng-controller='bodyAll'>
+<!--侧滑directive-->
+<leftnav>leftnav</leftnav>
+
+<script src="../../../../../../Public/js/mui.min.js"></script>
+<script src="../../../../../../Public/js/jquery-1.7.2.min.js"></script>
+<script src="../../../../../../Public/js/sea.js"></script>
+<!--<script src="http://192.168.0.5:8081/target/target-script-min.js#anonymous" type="text/javascript" charset="utf-8"></script>-->
+<script type="text/javascript" charset="utf-8">
+    mui.init({
+        keyEventBind: {
+            backbutton: false,
+            menubutton: false
+        }
+    });
+    seajs.config({
+        debug: false
+    });
+    mui.plusReady(function () {
+        seajs.use(["../../../../../controller/public/seaMain.js", './leftNav.js'], function () {
+            angular.element(document).ready(function () {
+                angular.bootstrap(window.document, ["city"]); //启动angular
+
+
+            })
+        })
+    })
+</script>
+
+</body>
+
+</html>

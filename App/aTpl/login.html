@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<!--登录页面-->
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>login</title>
+		<link href="../../Public/css/mui.min.css" rel="stylesheet" />
+		<link href="../../Public/css/component.css" rel="stylesheet" />
+		<link href="../../Public/css/common.css" rel="stylesheet" />
+		<link href="../../Public/css/login.css" rel="stylesheet" />
+	</head>
+
+	<body ng-controller="login">
+
+		<div class="mui-content" id="loginShow" style="display: none">
+			<div class="container">
+				<div class="logo_container c"><img src="../../Public/images/login/login_logo.png" width="100%" alt="" /></div>
+				<div class="login_container c">
+					<div class="r_input"><i></i>
+						<div>
+							<input id="tel" type="number" name=""  value="" placeholder="手机号" />
+						</div>
+					</div>
+					<div class="r_input"><i></i>
+						<div>
+							<input id="psd" type="number" name=""  value="" placeholder="验证码" />
+						</div>
+						<a id="security_btn" class="button" href="">获取验证码</a></div>
+				</div>
+				<div class="button_container c">
+					<a ng-click="btnlogin()" role="button">登录</a>
+				</div>
+			</div>
+		</div>
+		<div style="width: 100%;height: 100%;display: none;position: fixed;z-index: 2000;top:0" id="stopClick"></div>
+
+		<script src="../../Public/js/mui.min.js"></script>
+		<script src="../../Public/js/jquery-1.7.2.min.js"></script>
+		<script src="../../Public/js/sea.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+			seajs.config({
+				debug: false
+			});
+			mui.plusReady(function() {
+				seajs.use(["../controller/public/seaMain.js", '../controller/login.js'], function() {
+					angular.element(document).ready(function() {
+						angular.bootstrap(window.document, ['city']);
+					});
+				});
+			});
+			$(function() {
+				//设置高度
+				var h = $(window).outerHeight()
+				$('body').height(h);
+			});
+			//首页返回键处理
+			//处理逻辑：1秒内，连续两次按返回键，则退出应用；
+			var first = null;
+			mui.back = function() {
+					//首次按键，提示‘再按一次退出应用’
+					if (!first) {
+						first = new Date().getTime();
+						mui.toast('再按一次退出应用');
+						setTimeout(function() {
+							first = null;
+						}, 1000);
+					} else {
+						if (new Date().getTime() - first < 1000) {
+							plus.runtime.quit();
+						}
+					}
+				
+			};
+		</script>
+	</body>
+
+</html>

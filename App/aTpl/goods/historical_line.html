@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>history_line</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../../Public/css/mui.min.css">
+		<link rel="stylesheet" href="../../../Public/css/component.css" />
+		<link rel="stylesheet" href="../../../Public/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../../Public/css/swiper/swiper.3.2.0.min.css" />
+		<link rel="stylesheet" href="../../../Public/css/historical_line.css" />
+	</head>
+
+	<body>
+		<topnav></topnav>
+		<div class="mui-content" ng-controller="historyCtrl" style="background: #F2EEEB">
+			<div class="mui-scroll-wrapper scroll_top">
+				<div id="history_refresh" class="mui-scroll">
+					<div ng-repeat="objadd in addrsLst">
+						<div class="r_history_address_panel" role="panel" style="margin-bottom: 1rem;">
+							<div class="r_list" role="list">
+								<ul>
+									<li>
+										<i class="r_icon_drip_green l" role="icon">起</i>
+										<div ng-repeat="obj in objadd.startaddLst">
+											<span class="l">{{obj.index}}-</span>
+											<div>
+												<span>{{obj.addr}}</span>
+												<br />
+												<small>联系人：{{obj.psn_name}}&nbsp;&nbsp;{{obj.psn_tel}}</small>
+											</div>
+										</div>
+									</li>
+									<li>
+										<i class="r_icon_drip_red l" role="icon">终</i>
+										<div>
+											<div ng-repeat="obj in objadd.endaddLst">
+												<span class="l">{{obj.index}}-</span>
+												<div>
+													<span>{{obj.addr}}</span>
+													<br />
+													<small>联系人：{{obj.psn_name}}&nbsp;&nbsp;{{obj.psn_tel}}</small>
+												</div>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<a class="r_simple_button_red" position="{{$index}}" role="button">使用</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+	<script src="../../../Public/js/mui.min.js"></script>
+	<script src="../../../Public/js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../Public/js/sea.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../Public/js/mui.pullToRefresh.js"></script>
+	<script src="../../../Public/js/mui.pullToRefresh.material.js"></script>
+	<script>
+		seajs.config({
+			debug: false
+		});
+		mui.plusReady(function() {
+			seajs.use(["../../controller/public/seaMain.js", '../../controller/goods/historical_line.js'], function() {
+				angular.element(document).ready(function() {
+					angular.bootstrap(window.document, ["city"]); //启动angular
+				})
+			});
+		});
+		mui('.mui-scroll-wrapper').scroll({
+			deceleration: 0.0005, //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+			bounce: false,
+			indicators: true, //是否显示滚动条
+		});
+	</script>
+
+</html>

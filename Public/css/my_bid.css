@@ -1,0 +1,8 @@
+.my_bid>.r_segment_button,
+.my_bid>.r_mybid_panel
+{
+	margin-bottom: 0.36rem;
+}
+.my_bid>.r_mybid_panel:last-child{
+	margin-bottom: 4rem;
+}

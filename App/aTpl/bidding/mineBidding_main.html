@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>我的发货</title>
+		<link rel="stylesheet" href="../../../Public/css/mui.min.css">
+		<link rel="stylesheet" href="../../../Public/css/component.css" />
+		<link rel="stylesheet" href="../../../Public/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../css/swiper/swiper.3.2.0.min.css" />
+		<link rel="stylesheet" href="../../../Public/css/bidding/bidding_sub.css" />
+	</head>
+
+	<body>
+		<topnav></topnav>
+		<div class="mui-content" ng-controller="biddingCtrl" ng-model="showData">
+			<div class="r_segment_button" role="button">
+				<a id="ongoing" class="selected">进行中<span class="line"></span></a>
+				<a id="failure">已失效<span class="line"></span></a>
+			</div>
+			<div class="mui-scroll-wrapper scroll_top">
+				<div id="bidding_content" class="mui-scroll">
+					<div class="r_mybid_panel item_top" role="panel" ng-repeat="bid in showData">
+						<div class="r_mybid_panel gaiyao" position="{{$index}}">
+							<div class="r_singleline_container" role="container">
+								<span class="l">
+									<span ng-if="role==1" style="color: #999;">货物名称：{{bid.goods_type}}</span>
+								<span ng-if="role==2" style="color: #999;">线路名称：{{bid.line_name}}</span>
+								</span>
+								<div class="tar"><span class="red" ng-if="bid.goods_state=='2'">等待车主签署</span></div>
+							</div>
+							<div class="r_singleline_container" role="container">
+								<span class="l">
+									<span ng-if="role==1" style="color: #999;">我的出价：{{bid.pur_money}}</span>
+								<span ng-if="role==2" style="color: #999;">每日出价：{{bid.pur_money}}</span>
+								</span>
+								<div class="tar"><span class="gray"></span></div>
+							</div>
+							<div class="r_label_container" role="container">
+								<label for="" ng-if="role==1" style="color: #999;margin-left: 1rem;">装货时间：</label>
+								<label for="" ng-if="role==2" style="color: #999;margin-left: 1rem;">装货日期：</label>
+								<div style="padding-left: 0.5rem;">
+									<span style="color: #999;">{{bid.load_time}}</span>
+								</div>
+							</div>
+							<div ng-if="bid.flag == '2'" class="r_singleline_container" role="container">
+								<div><span class="black" style="color: #999999;">失效原因：{{bid.fail_cause}}</span></div>
+							</div>
+						</div>
+						<ul ng-if="bid.flag == '1'">
+							<li class="r_singleline_container" role="container" ng-repeat="order in bid.orderLst">
+								<div class="jingjia" position="{{$index}}" pIndex="{{order.pindex}}">
+									<span><span class="black" style="color: #999;">{{order.driver_name}}</span></span>
+									<span>
+										<span class="black" style="color: #999;">{{order.car_num}}</span>
+									<i class="r_icon_xinxing_{{order.evalu_num}}" role="icon" ng-if="order.evalu_level==1"></i>
+									<i class="r_icon_gold_start_{{order.evalu_num}}" role="icon" ng-if="order.evalu_level==2"></i>
+									<i class="r_icon_yinguan_{{order.evalu_num}}" role="icon" ng-if="order.evalu_level==3"></i>
+									<i class="r_icon_gold_{{order.evalu_num}}" role="icon" ng-if="order.evalu_level==4"></i>
+									<i class="r_icon_crown_{{order.evalu_num}}" role="icon" ng-if="order.evalu_level==5"></i>
+									</span>
+									<span><span class="gray">竞价</span> <span class="red">{{order.bid_money}}</span> <span class="gray">元</span></span>
+									<span> 
+										<i class="r_icon_checkmark_gray" role="icon" style="width: 1.5rem;height: 1.5rem;" ng-if="bid.goods_state=='1'"></i>
+										<i class="r_icon_checkmark_red" role="icon" style="width: 1.5rem;height: 1.5rem;" ng-if="bid.goods_state=='2' && order.deal_state=='1'"></i>
+									</span>
+								</div>
+							</li>
+						</ul>
+						<a ng-if="bid.flag == '1' && bid.orderLst.length>0 && bid.goods_state=='1'" class="r_simple_button_gray" role="button" style="color: #666;" position="{{$index}}">取消发货</a>
+						<div ng-if="bid.flag == '1' && bid.orderLst.length==0" class="r_segment_button" role="button">
+							<a class="btn_cancel" position="{{$index}}">取消发货</a>
+							<a class="btn_edit" position="{{$index}}">修改出价</a>
+						</div>
+						<div ng-if="bid.flag == '2'" class="r_segment_button" role="button">
+							<a class="btn_again" position="{{$index}}">修改重发</a>
+							<a class="btn_del" position="{{$index}}">删除</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+
+	<script src="../../../Public/js/mui.min.js"></script>
+	<script src="../../../Public/js/jquery-1.7.2.min.js"></script>
+	<script src="../../../Public/js/sea.js"></script>
+	<script src="../../../Public/js/mui.pullToRefresh.js"></script>
+	<script src="../../../Public/js/mui.pullToRefresh.material.js"></script>
+
+	<script type="text/javascript" charset="utf-8">
+		mui.plusReady(function() {
+			seajs.use(["../../controller/public/seaMain.js", '../../controller/bidding/mineBidding.js'], function() {
+				angular.element(document).ready(function() {
+					angular.bootstrap(window.document, ['city']);
+				});
+			});
+		});
+		$(function() {
+			//设置高度
+			var h = $(window).outerHeight();
+			$('body').height(h);
+		});
+		mui('.mui-scroll-wrapper').scroll({
+			deceleration: 0.0005, //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+			bounce: false,
+			indicators: true, //是否显示滚动条
+		});
+		//		//进行中
+		//		document.getElementById('ongoing').addEventListener('tap', function() {
+		//			document.getElementById('failure').className = '';
+		//			this.className = 'selected';
+		//			var sub = plus.webview.getWebviewById('mineBidding_sub.html');
+		//			mui.fire(sub, 'ongoing');
+		//		});
+		//		//已失效
+		//		document.getElementById('failure').addEventListener('tap', function() {
+		//			document.getElementById('ongoing').className = '';
+		//			this.className = 'selected';
+		//			var sub = plus.webview.getWebviewById('mineBidding_sub.html');
+		//			mui.fire(sub, 'failure');
+		//		});
+		//
+	</script>
+
+</html>

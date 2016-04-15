@@ -1,0 +1,167 @@
+@import "g";
+@import "_animation";
+
+@backColor: #fff;
+@lineColor: #d6d6d6;
+
+.touchThreeFh {
+  .all();
+  font-size: 14px;
+  position: fixed;
+  height: 225px;
+  background-color: @backColor;
+  bottom: 0;
+  left: 0;
+  z-index: 5000;
+  .top {
+    .all();
+    height: 45px;
+    overflow: hidden;
+    border-bottom: 1px solid  @lineColor;
+    button {
+      border: 0;
+    }
+    #touchCancel {
+      .mt(10);
+      .ml(10);
+    }
+    #touchOk {
+      .mt(10);
+      margin-right: 15px;
+      .right;
+    }
+  }
+
+  .content {
+    .all();
+    .clear();
+    height: 260px;
+    overflow: hidden;
+    .poistionDiv {
+      .cText;
+      .clear();
+      .all();
+      position: absolute;
+      z-index: 1;
+      height: 260px;
+      //复用声明
+      .item {
+        .clear();
+        height: 45px;
+      }
+      .itemLine {
+        .all(9, 3);
+        .allHeight();
+      }
+      .topW1 {
+        .item;
+        border-bottom: 2px solid red;
+        li {
+          list-style: none;
+          .all(9, 3);
+          font-size: 18px;
+          font-weight: bold;
+          margin-top: 13px;
+        }
+      }
+      .topW2 {
+        .item;
+        border-bottom: 2px solid red;
+      }
+      .topW3 {
+        .item;
+        border-bottom: 1px solid @lineColor;
+      }
+      .topW4 {
+        .item;
+      }
+
+      .hLine {
+        position: absolute;
+        z-index: 0;
+        .all();
+        height: 260px;
+        top: 0px;
+        .left1 {
+          .itemLine;
+          border-right: 1px solid @lineColor;
+        }
+        .left2 {
+          .itemLine;
+          border-right: 1px solid @lineColor;
+        }
+      }
+    }
+    .touchDiv {
+      position: absolute;
+      z-index: 2;
+      .all();
+      height: 260px;
+      overflow: hidden;
+      .item {
+        .all(9, 3);
+      }
+      li {
+        font-size: 16px;
+        height: 45px;
+        padding-top: 12px;
+        overflow: hidden;
+        list-style: none;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .heightSelect {
+        .pulse(1.5);
+        .animation(pulse 0.6s ease-in-out);
+        color: red;
+        font-weight: bold;
+      }
+      #touch1 {
+        .item;
+        //        border-right: 1px solid @lineColor;
+        position: absolute;
+        top: 0px;
+      }
+      #touch2 {
+        .item;
+        position: absolute;
+        border-right: 1px solid @lineColor;
+        margin-left: 33.33333333%;
+      }
+      #touch3 {
+        .item;
+        position: absolute;
+        margin-left: 66.66666666%;
+        li {
+          img {
+            height: 20px;
+            //新版再打开
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+#touchBack {
+  //  display: none;
+  position: fixed;
+  top: 40px;
+  z-index: 4000;
+  .all();
+  height: 100%;
+  background-color: #000;
+  opacity: 0.8;
+}
+
+.showControl {
+  .turnInUp();
+  .animation(turnInUp 0.6s ease-in-out);
+}
+
+.hideControl {
+  .turnInDown();
+  .animation(turnInDown 0.6s ease-in-out);
+}

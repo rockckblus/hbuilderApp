@@ -1,0 +1,56 @@
+<div id="leftNavAll" ng-app="app">
+    <div class="top">
+        <div class="headerImg">
+            <div class="top1"></div>
+            <div class="top2" hackimgcenter>
+                <img id="editIcon"  src="../../../../../../Public/images/leftNav/icon_top1.png" alt=""/>
+
+                <div class="imgPng">
+                    <img class="needHack"
+                         ng-src="{{userHeader}}"
+                         id="userHeaderImg" alt=""/>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="top3">
+            <div class="top31"></div>
+            <div class="clear"></div>
+            <div class="top32">
+                <div class="clear">
+                    <span class="">{{userData.tel}}</span>
+                    <span class="">
+                        <!--<img id="userQi" src="../../../../../../Public/images/leftNav/icon_top3.png" alt=""/>-->
+                    </span>
+                </div>
+                <div class="clear " style="display: none">兑换积分 {{userData.exchange_score}}</div>
+            </div>
+        </div>
+    </div>
+    <!--list -->
+    <div class="topToList"></div>
+
+    <div class="clear list">
+
+        <div class="item thisItem_{{vo.thisItem}}" id="leftNavId_{{vo.id}}" ng-click="uiFun.closeLeftNav()" ng-repeat="vo in listItem" public gourl="{{vo.url}}">
+            <div class="itemTop"></div>
+            <div class="clear itemCenter" style="height: 40%;vertical-align: middle">
+                <span class="leftIcon"><img height="100%" ng-src="{{vo.icon}}"></span>
+                <span class="rightText">{{vo.title}}</span>
+                <span class="rightIcon" ng-if="vo.rightCount">{{vo.rightCount}}</span>
+            </div>
+        </div>
+    </div>
+
+  <div class="clear mt20" style="position: absolute;
+bottom: 40px;
+left: 50%;
+margin-left: -25%;
+width: 50%;" >
+         <button id="keFuTel" class="mui-btn" style="width: 100%;font-size: 20px">联系客服</button>
+  </div>
+
+
+</div>
+
+

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../../../Public/js/mui.min.js"></script>
+</head>
+<body>
+
+<script>
+    /**
+     * 清空cookie，跳转到登录
+     * 16/2/5 */
+    mui.plusReady(function () {
+        clearCookie(funcBack);
+    });
+
+    /**
+     * 回调跳转到登录页面
+     * 16/2/5 */
+    function funcBack() {
+        var all = plus.webview.all();
+        for (var vo in all) {
+            if (all[vo].id != 'HBuilder') {
+                plus.webview.close(all[vo].id);
+            }
+        }
+    }
+
+    /**
+     * 清空cookIe
+     * 16/2/5 */
+    function clearCookie(funcBack) {
+        localStorage.clear();
+        setTimeout(function () {
+
+            var loginId = plus.webview.getWebviewById('HBuilder');
+            mui.fire(loginId, 'quit');//给login 发送 quit事件
+            funcBack();
+        }, 1000);
+
+    }
+
+
+</script>
+</body>
+</html>

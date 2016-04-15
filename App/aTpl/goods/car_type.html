@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+ 
+	<head>
+		<meta charset="utf-8">
+		<title>car_type</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../../Public/css/mui.min.css">
+		<link rel="stylesheet" href="../../../Public/css/component.css" />
+		<link rel="stylesheet" href="../../../Public/css/common.css" />
+		<link rel="stylesheet" href="../../../Public/css/accessorial_service.css" />
+		<link rel="stylesheet" type="text/css" href="../css/swiper/swiper.3.2.0.min.css" />
+	</head>
+
+	<body ng-controller="bodyAll">
+		<topnav></topnav>
+		<div class="mui-content fh" ng-controller="carTypeCtrl" style="background: #F2EEEB">
+			<div id="content">
+				<div class="mui-content accessorial_service">
+					<div class="r_service_panel" role="panel">
+						<div id="xiaomian_row" class="r_container_left" role="container" style="clear: both;height: 4.3rem;border-bottom: #bbb 1px solid;">
+							<i id="xiaomian" class="r_icon_xiaomian_gray" role="icon" style="width: 2.8rem;height: 2.8rem;left: 1rem;top:50%;margin-top: -1.2rem;"></i>
+							<div style="float: left;">
+	  							<span style="color:#999999;font-size: 1.1rem;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;小面包车</span>
+								<br />
+								<small style="left: :6rem;color: #BBBBBB;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;载重 约2方，0.6吨</small>
+							</div> 
+   
+							<div id="stepper1" class="r" role="stepper" style=" float: right;display: none;">
+								<a class="reduce" id="funCarNumAdd1" style="width: 2.7rem;">+</a>
+								<input id="carnums1" readonly="readonly" type="text"  style="width:2rem;margin-left: -0.25rem;color: #999;font-size: 1.3rem;text-align: center;padding-top: 0.2rem;" value="1">
+								<a id="funCarNumReduce1" class="add" style="width: 2.7rem;margin-left: -0.3rem;">-</a>
+							</div>
+							
+							<div style="clear: both;"></div>
+						</div>
+
+						<div id="pingmian_row" class="r_container_left" role="container" style="clear: both;height: 4.3rem;border-bottom: #bbb 1px solid;">
+							<i id="pingmian" class="r_icon_pingmian_gray" role="icon" style="width: 2.8rem;height: 2.8rem;left: 1rem;top:50%;margin-top: -1.2rem;"></i>
+							<div style="float: left;">
+								<span style="color:#999999;font-size: 1.1rem;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;平顶面包车</span>
+								<br />
+								<small style="left: :6rem;color: #BBBBBB;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;载重 约4方，0.6吨</small>
+							</div>
+
+							<div id="stepper2" class="r" role="stepper" style=" float: right;display: none;">
+								<a class="reduce" id="funCarNumAdd2" style="width: 2.7rem;">+</a>
+								<input id="carnums2" readonly="readonly" type="text"  style="color: #999;width:2rem;margin-left: -0.25rem;font-size: 1.3rem;text-align: center;padding-top: 0.2rem;" value="1">
+								<a id="funCarNumReduce2" class="add" style="width: 2.7rem;margin-left: -0.3rem;padding: 0;">-</a>
+							</div>
+							<div style="clear: both;"></div>
+						</div>
+
+						<div id="gaomian_row" class="r_container_left" role="container" style="clear: both;height: 4.3rem;border-bottom: #bbb 1px solid;">
+							<i id="gaomian" class="r_icon_gaomian_gray" role="icon" style="width: 2.8rem;height: 2.8rem;left: 1rem;top:50%;margin-top: -1.2rem;"></i>
+							<div style="float: left;">
+								<span style="color:#999999;font-size: 1.1rem;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;高顶面包车</span>
+								<br />
+								<small style="left: :6rem;color: #BBBBBB;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;载重 约6方，1吨</small>
+							</div>
+
+							<div id="stepper3" class="r" role="stepper" style=" float: right;display: none;">
+								<a class="reduce" id="funCarNumAdd3" style="width: 2.7rem;">+</a>
+								<input id="carnums3" readonly="readonly" type="text"  style="color: #999999;width:2rem;margin-left: -0.25rem;font-size: 1.3rem;text-align: center;padding-top: 0.2rem;" value="1">
+								<a id="funCarNumReduce3" class="add" style="width: 2.7rem;margin-left: -0.3rem;">-</a>
+							</div>
+							<div style="clear: both;"></div>
+						</div>
+
+						<div id="qingka_row" class="r_container_left" role="container" style="clear: both;height: 4.3rem;border-bottom:none">
+							<i id="qingka" class="r_icon_qingka_gray" role="icon" style="width: 2.8rem;height: 2.8rem;left: 1rem;top:50%;margin-top: -1.2rem;"></i>
+							<div style="float: left;">
+								<span style="color:#999999;font-size: 1.1rem;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;轻型卡车</span>
+								<br />
+								<small style="left: :6rem;color: #BBBBBB;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;载重 约14方，3吨</small>
+							</div>
+
+							<div id="stepper4" class="r" role="stepper" style=" float: right;display: none;">
+								<a class="reduce" id="funCarNumAdd4" style="width: 2.7rem;">+</a>
+								<input id="carnums4" readonly="readonly" type="text"  style="color: #999999;width:2rem;margin-left: -0.25rem;font-size: 1.3rem;text-align: center;padding-top: 0.2rem;" value="1">
+								<a id="funCarNumReduce4" class="add" style="width: 2.7rem;margin-left: -0.3rem;">-</a>
+							</div>
+						</div>
+ 
+						<div id="line4" style="float: left;width: 100%;height: 1px;border-bottom: #bbb 1px solid;"></div>
+						<div id="shape4" style="display: none;float: left;background: #ffffff;width: 100%;padding-left: 0.5%;padding-right: 0.5%;border-bottom: #bbb 1px solid;">
+							<div id="qingcar_1" style="width: 33%;float: left;text-align: center;border-right: #e9e7e7 1px solid;padding-top: 0.6rem;padding-bottom: 0.6rem;">
+								<label id="qingcar_f1" style="color:#e6454a ;font-size: 1.1rem;">厢式</label>
+							</div>
+							<div id="qingcar_2"  style="width: 33%;float: left;text-align: center;border-right: #e9e7e7 1px solid;padding-top: 0.6rem;padding-bottom: 0.6rem;">
+								<label  id="qingcar_f2"style="color:#999999 ;font-size: 1.1rem;">平板</label>
+							</div>
+							<div id="qingcar_3" style="width: 33%;float: left;text-align: center;padding-top: 0.6rem;padding-bottom: 0.6rem;">
+								<label id="qingcar_f3" style="color:#999999 ;font-size: 1.1rem;">高栏</label>
+							</div>
+						</div>
+
+						<div style="clear: both;"></div>
+
+						<div id="zhongka_row" class="r_container_left" role="container" style="clear: both;height: 4.3rem;;border-bottom:none">
+							<i id="zhongka" class="r_icon_zhongka_gray" role="icon" style="width: 2.8rem;height: 2.8rem;left: 1rem;top:50%;margin-top: -1.2rem;"></i>
+							<div style="float: left;">
+								<span style="color:#999999;font-size: 1.1rem;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中型卡车</span>
+								<br />
+								<small style="left: :6rem;color: #BBBBBB;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;载重 约20方，10吨</small>
+							</div>
+
+		 					<div id="stepper5" class="r" role="stepper" style=" float: right;display: none;">
+								<a class="reduce" id="funCarNumAdd5" style="width: 2.7rem;">+</a>
+								<input id="carnums5" readonly="readonly" type="text"  style="color: #999999;width:2rem;margin-left: -0.25rem;font-size: 1.3rem;text-align: center;padding-top: 0.2rem;" value="1">
+								<a id="funCarNumReduce5" class="add" style="width: 2.7rem;margin-left: -0.3rem;">-</a>
+							</div>
+						</div>
+   
+						<div id="line5" style="float: left;width: 100%;height: 1px;border-bottom: #bbb 1px solid;"></div>
+						<div id="shape5" style="display: none;float: left;background: #ffffff;width: 100%;padding-left: 0.5%;padding-right: 0.5%;border-bottom: #bbb 1px solid;">
+							<div id="zhongcar_1" style="width: 33%;float: left;text-align: center;border-right: #e9e7e7 1px solid;padding-top: 0.6rem;padding-bottom: 0.6rem;">
+								<label id="zhongcar_f1" style="color:#e6454a ;font-size: 1.1rem;">厢式</label>
+							</div>
+							<div id="zhongcar_2" style="width: 33%;float: left;text-align: center;border-right: #e9e7e7 1px solid;padding-top: 0.6rem;padding-bottom: 0.6rem;">
+								<label id="zhongcar_f2" style="color:#999999 ;font-size: 1.1rem;">平板</label>
+							</div>
+							<div id="zhongcar_3" style="width: 33%;float: left;text-align: center;padding-top: 0.6rem;padding-bottom: 0.6rem;">
+								<label id="zhongcar_f3" style="color:#999999 ;font-size: 1.1rem;">高栏</label>
+							</div>
+						</div>
+     
+						<div style="clear: both;"></div>
+     
+						<div id="daka_row" class="r_container_left" role="container" style="clear: both;height: 4.3rem;border-bottom:none">
+							<i id="daka" class="r_icon_daka_gray" role="icon" style="width: 2.8rem;height: 2.8rem;left: 1rem;top:50%;margin-top: -1.2rem;"></i>
+							<div style="float: left;">
+								<span style="color:#999999;font-size: 1.1rem;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;重型卡车</span>
+								<br />
+								<small style="left: :6rem;color: #BBBBBB;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;载重 约14方，3吨</small>
+							</div>
+
+							<div id="stepper6" class="r" role="stepper" style=" float: right;display: none;">
+								<a class="reduce" id="funCarNumAdd6" style="width: 2.7rem;">+</a>
+								<input id="carnums6" readonly="readonly" type="text"  style="color: #999999;width:2rem;margin-left: -0.25rem;font-size: 1.3rem;text-align: center;padding-top: 0.2rem;" value="1">
+								<a id="funCarNumReduce6" class="add" style="width: 2.7rem;margin-left: -0.3rem;">-</a>
+							</div>
+						</div> 
+ 
+						<div id="line6" style="float: left;width: 100%;height: 1px;border-bottom: #bbb 1px solid;"></div>
+						<div id="shape6" style="display: none;float: left;background: #ffffff;width: 100%;padding-left: 0.5%;padding-right: 0.5%;border-bottom: #bbb 1px solid;">
+							<div id="dacar_1" style="width: 33%;float: left;text-align: center;border-right: #e9e7e7 1px solid;padding-top: 0.6rem;padding-bottom: 0.6rem;">
+								<label id="dacar_f1" style="color:#e6454a ;font-size: 1.1rem;">厢式</label>
+							</div>
+							<div id="dacar_2" style="width: 33%;float: left;text-align: center;border-right: #e9e7e7 1px solid;padding-top: 0.6rem;padding-bottom: 0.6rem;">
+								<label id="dacar_f2" style="color:#999999 ;font-size: 1.1rem;">平板</label>
+							</div>
+							<div id="dacar_3" style="width: 33%;float: left;text-align: center;padding-top: 0.6rem;padding-bottom: 0.6rem;">
+								<label id="dacar_f3" style="color:#999999 ;font-size: 1.1rem;">高栏</label>
+							</div>
+						</div>
+      
+						<div style="clear: both;"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+	<script src="../../../Public/js/mui.min.js"></script>
+	<script src="../../../Public/js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../Public/js/sea.js" type="text/javascript" charset="utf-8"></script>
+
+	<script type="text/javascript" charset="utf-8">
+		mui.init();
+	</script>
+
+	<script>
+		seajs.config({
+			debug: false
+		});
+		mui.plusReady(function() {
+			seajs.use(["../../controller/public/seaMain.js", '../../controller/goods/car_type.js'], function() {
+				angular.element(document).ready(function() {
+					angular.bootstrap(window.document, ["city"]); //启动angular
+				})
+			});
+		});
+	</script>
+
+</html>

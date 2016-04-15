@@ -1,0 +1,124 @@
+.mui-content > div:not(:nth-child(1)) {
+    margin-top: 0.36rem;
+    background-color: #f2eeeb;	
+}
+
+.mui-content .r_address_list_1 {
+    border-bottom: #e5e5e5 1px solid;
+}
+
+
+[role="tag"] {
+    color: #bbbb;
+}
+
+#carnums {
+    color: #bbbb;
+}
+
+.r_simple_tag {
+    color: #bbbb;
+}
+
+#funGoodsPhotoCameraClick {
+    float: right;
+    height: 3rem;
+    width: 3rem;
+    overflow: hidden;
+    padding-top: 0.6rem;
+    padding-left: 0.6rem;
+    border: none;
+}
+
+.xialaDown {
+    width: 3.76rem;
+    height: 1.88rem;
+    margin: 0 auto;
+    border: #e6454a 1px solid;
+    border-top: none;
+    border-radius: 0 0 1.71rem 1.71rem;
+    background: #fff url(../images/icon/icon_arrow_down_red.png) no-repeat center;
+    background-size: 50%;
+    overflow: hidden;
+}
+
+.xialaUp {
+    width: 3.76rem;
+    height: 1.88rem;
+    margin: 0 auto;
+    border: #e6454a 1px solid;
+    border-top: none;
+    border-radius: 0 0 1.71rem 1.71rem;
+    background: #fff url(../images/icon/icon_arrow_up_red.png) no-repeat center;
+    background-size: 50%;
+    overflow: hidden;
+}
+
+.clearThis:before, .clearThis:after {
+    content: "";
+    display: table;
+}
+
+.clearThis:after {
+    clear: both;
+}
+
+.clearThis {
+    zoom: 1;
+}
+.calendarLocal{
+	/*margin-top: 3.2rem;*/
+	background: #3D3D3D;
+}
+
+.bottomBtn {
+	width: 100%;
+	height: 4rem;
+	background: #FFFFFF;
+	position: absolute;
+	bottom: 0px;
+}
+
+.saveAll {
+	width: 63%;
+	height: 3rem;
+	margin: 0.5rem 0 0 10px;
+	background: #E6454A;
+	font-size: 14px;
+	border-radius: 5px;
+	border-color: #E6454A;
+	color: #FFFFFF;
+}
+
+.cancelToday {
+	width: 28%;
+	height: 3rem;
+	margin: 0.5rem 0 0 10px;
+	font-size: 14px;
+	border-radius: 5px;
+	border-color: #999999;
+	color: #999999;
+}
+.editRoadInfoList{
+	top: 9.3rem;
+	bottom: 4rem;
+}
+
+.ruyue{
+	width: 30%;
+}
+
+.ji{
+	width: 15%
+}
+.jinkuai{
+	width: 30%;
+}
+.history-btn{
+	border-color: transparent;
+	background: transparent;
+	
+}
+.r_address_list_2>div>span{
+	width: 80px;
+}

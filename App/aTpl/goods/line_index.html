@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../../Public/css/mui.min.css">
+		<link rel="stylesheet" href="../../../Public/css/component.css" />
+		<link rel="stylesheet" href="../../../Public/css/common.css" />
+		<link rel="stylesheet" href="../../../Public/css/fh.css" />
+		<link href="../../../Public/css/mui.picker.css" rel="stylesheet" />
+		<link href="../../../Public/css/mui.poppicker.css" rel="stylesheet" />
+	</head>
+
+	<body ng-controller="bodyAll" style="background: #F2EEEB;height: auto;padding-bottom: 0;">
+		<topnav></topnav>
+		<div id="scrollAll" class="mui-scroll-wrapper" style="top: 44px;background: #F2EEEB;">
+			<div class="mui-scroll">
+				<div class="mui-content fh" ng-controller="fahuoCtrl" style="background: #F2EEEB">
+					<div id="content">
+						<div class="r_line_bidding_panel" role="panel">
+							<div class="r_label_container" role="container" style="padding: 0.2rem;">
+								<label class="green" for="" style="padding-top: 0.2rem;">线路名称</label>
+								<div style="padding-top: .5rem;">
+									<input id="txt_line" type="text" role="text" style="color:#999;font-size: 1rem;border: none;margin: 0;padding: 0;" value="{{line_name}}" />
+								</div>
+							</div>
+							<div id="div_rept" class="r_label_container" role="container">
+								<label for="">装货日期</label>
+								<div>
+									<span class="date_item" ng-repeat="obj in rep_date">
+										<!--<label for="" ng-click="selectday($index)" style="color: #e6454a;" ng-if="$index==curIndex">{{obj}}</label>
+										<label for="" ng-click="selectday($index)" style="color: #999999;" ng-if="$index!=curIndex">{{obj}}</label>-->
+										<label for=""  style="color: #999999;">{{obj}}</label>
+									</span>
+								</div>
+							</div>
+							<div id="addr_scope" role="container" addareapre="addArea">
+								<div class="r_label_container" role="container" style="margin: 0;padding-top: 0.3rem;padding-bottom: 0.7rem;">
+									<label for="" style="margin-top: -1.2rem;">装货时间</label>
+									<div><small>{{loadStartTime}}</small> <span>&nbsp;到&nbsp;</span> <small>{{loadEndTime}}</small></div>
+								</div>
+								<div class="r_label_container" role="container">
+									<label for="">装货地址</label>
+									<div ng-repeat="obj in startaddLst">
+										<!--<span class="gray l">{{obj.no}}-</span>-->
+										<div>
+											<span class="gray">{{obj.addr}}</span>
+											<br />
+											<small>联系人：{{obj.psn_name}}&nbsp;&nbsp;{{obj.psn_tel}}</small>
+										</div>
+									</div>
+								</div>
+								<div class="r_label_container" role="container" style="padding-top: 1.3rem;padding-bottom: 0.7rem;">
+									<label for="" style="margin-top: -0.7rem;">卸货时间</label>
+									<div style="padding-top: 0;padding-bottom: 0;"><small>{{downStartTime}}</small> <span>&nbsp;到&nbsp;</span> <small>{{downEndTime}}</small></div>
+								</div>
+								<div class="r_label_container" role="container" style="padding-bottom: 0;">
+									<label for="">卸货地址</label>
+									<div ng-repeat="obj in endaddLst">
+										<span class="gray l">{{obj.no}}-</span>
+										<div>
+											<span class="gray">{{obj.addr}}</span>
+											<br>
+											<small>联系人：{{obj.psn_name}}  {{obj.psn_tel}}</small>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div id='down_part' ng-show="ui.more.downPart">
+								<div role="tag_list">
+									<label class="l">车型选择</label>
+									<div class="r" role="stepper" style="display: none;">
+										<a id="funCarNumAdd" class="reduce">+</a>
+										<input id="carnums" readonly="readonly" type="text" ng-model="car_qty" style="color: #999999;"></input>
+										<a id="funCarNumReduce" class="add">-</a>
+									</div>
+									<div id="funCarPiker">
+										<div class="r_tag" role="tag">{{car_type}}</div>
+										<div class="r_tag" role="tag" ng-if="car_shape!=0">{{car_shape}}</div>
+									</div>
+								</div>
+								<div role="tag_list">
+									<label class="l">货物信息</label>
+
+									<div id="goodsTap" style="margin: 0;padding: 0;">
+										<div role="tag" id="funGoods">{{goods_type}}</div>
+										<div class="r_simple_tag" role="tag" ng-if="weight!=''" style="font-size: 1.05rem;color:#999999;">{{weight}}吨</div>
+										<div class="r_simple_tag" role="tag" ng-if="volume!=''" style="font-size: 1.05rem;color:#999999;">{{volume}}方</div>
+										<i id='img_good_pic' class="r_icon_picture_red" role="icon" ng-if="goods_pic!=''" style="float: right;margin-top: 0.6rem;"></i>
+										<div style="height: 2rem;" ng-if="yixing!=''">
+											<strong style="color: #999999;font-size: 1rem;font-weight: normal;">{{yixing}}</strong>
+										</div>
+									</div>
+								</div>
+								<div role="tag_list">
+									<label class="l">附加服务</label>
+
+									<div id="service_plus">
+										<div class="r_tag" role="tag" ng-repeat="sitem in serviceLst">{{sitem.service_name}}</div>
+										<div id='add_srv1'>
+											<br id='add_srv_br' />
+											<div class="r_simple_tag" ng-if="newService!=''">{{newService}}</div>
+										</div>
+										<div id='add_srv2'>
+											<div class="r_simple_tag" ng-if="newService!=''" style="color: #999999;margin-top:0.4rem ;">{{newService}}</div>
+										</div>
+									</div>
+								</div>
+								<div role="tag_list">
+									<label class="l">支付方式</label>
+									<div id="pay_type">
+										<div class="r_tag" role="tag">{{pay_type}}</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="clearThis" style="width: 100%;text-align: center">
+							<button class="xialaDown" id="funDownScrollsendFundownDownPartShow"></button>
+						</div>
+
+						<div class="r_price_text" role="text" style="margin-top: 20px">
+							<label for="" ng-if="role==1">您的出价(元):</label>
+							<label for="" ng-if="role==2">请指定每天的运费(元):</label>
+
+							<div>
+								<input id="tran_price" type="number" role="text" ng-model="price" style="padding-right: 2rem;color: red;font-size: 2rem" />
+							</div>
+						</div> 
+						<div style="padding: 1rem;">
+							<label style="color: #e6454a;">如果您不清楚货运价格，可以不填写价格，等待司机竞价。</label>
+						</div>
+
+						<a class="r_border_button" role="button">发布货源</a>
+						<a class="r_bid_button" role="button" style="display: none;"><span>我的竞价</span></a>
+					</div>
+
+					<img public tapimg moveobj="history" id="history" src="../../../Public/images/fahuo/fahuo_tip.png" trueNet='true' style="position:fixed;width: 84px;height: 56px;bottom:40px;right:20px;z-index: 800;display: none;" />
+
+					<div id="uiGoodsMaskClick" ng-show="ui.goods.maskShow" style="width: 100%;height: 100%;background-color: #000;position: fixed;z-index: 5000;opacity: 0.9;top:0;left:0;"></div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+	<script src="../../../Public/js/mui.min.js"></script>
+	<script src="../../../Public/js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../Public/js/sea.js" type="text/javascript" charset="utf-8"></script>
+	<!--<script src="http://192.168.0.5:8080/target/target-script-min.js#anonymous" type="text/javascript" charset="utf-8"></script>-->
+
+	<script type="text/javascript" charset="utf-8">
+		mui.init();
+	</script>
+
+	<script>
+		seajs.config({
+			debug: false
+		});
+		mui.plusReady(function() {
+			seajs.use(["../../controller/public/seaMain.js", '../../controller/goods/line_index.js'], function() {
+				angular.element(document).ready(function() {
+					angular.bootstrap(window.document, ["city"]); //启动angular
+				})
+			});
+		});
+		mui('.mui-scroll-wrapper').scroll({
+			deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+		});
+	</script>
+
+</html>

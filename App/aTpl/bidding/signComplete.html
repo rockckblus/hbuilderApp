@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<!--签署协议完成-->
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="../../../Public/css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../../Public/css/component.css" />
+		<link rel="stylesheet" href="../../../Public/css/common.css" />
+		<!--自己写的css样式-->
+		<link rel="stylesheet" href="../../../Public/css/bidding/signcomplete.css" />
+	</head>
+
+	<body>
+		<div class="mui-content" ng-controller="signOverCtrl">
+			<div>
+				<div class="r_settlement_message_panel" role="panel">
+					<div>
+						<span></span>
+						<br/>
+						<strong>￥ <span>{{pur_money}}</span> 元</strong>
+						<br />  
+						<small>{{pay_type}}</small>
+						<br /> 
+						<strong ng-if="auto==0">车主签署协议后，您可以在我的订单中查看运输状态</strong>
+					</div>
+					<div class="r_singleline_container" role="container">
+						<label for="">货物信息</label>
+						<div class="tar">
+							<span class="gray">{{goods_type}}</span>
+						</div>
+					</div>
+					<div class="r_singleline_container" role="container">
+						<label for="">承运车辆</label>
+						<div class="tar">
+							<span class="gray">{{car_num}}</span>
+						</div>
+					</div>
+					<div class="r_singleline_container" role="container">
+						<label for="">车辆司机</label>
+						<div class="tar">
+							<span class="gray"><i class="r_icon_telephone_blue" role="icon"></i>&nbsp;<a class="blue" href="tel:{{driver_tel}}">{{driver_name}}  {{driver_tel}}</a></span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<a class="r_border_button complete_top" id="btnOver" role="button">完成</a>
+		</div>
+	</body>
+
+	<script src="../../../Public/js/mui.min.js"></script>
+	<script src="../../../Public/js/jquery-1.7.2.min.js"></script>
+	<script src="../../../Public/js/sea.js"></script>
+
+	<script type="text/javascript" charset="utf-8">
+		mui.init();
+	</script>
+	
+	<script type="text/javascript" charset="utf-8">
+		mui.plusReady(function() {
+			seajs.use(["../../controller/public/seaMain.js", '../../controller/bidding/signCompleteDeal.js'], function() {
+				angular.element(document).ready(function() {
+					angular.bootstrap(window.document, ['city']);
+				});
+			});
+		});
+		$(function() {
+			//设置高度
+			var h = $(window).outerHeight();
+			$('body').height(h);
+		});
+	</script>
+
+</html>

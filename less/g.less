@@ -1,0 +1,12 @@
+//公共style .mt .ml .all .clear .left .right .c .linkMouse .hide .angualrEnd
+html,body{height: 100%} .c{margin: 0 auto} .cText{text-align: center}
+.mt(@top:10) {  margin-top: unit(@top, px);  }  .ml(@left:10) {  margin-left: unit(@left, px);  }
+//.all() 用法 传入 number 1，就是按百分比居中,不传就是按百分比几份
+.all(@all:10,@num:10,@one:'1') {  @item: 100% / @all;  width: @item * @num;  .left;  }
+.all(@all:10,@num:10,@one:'1') when (isnumber(@one)) {  @item: 100% / @all;  margin-left: @item * ((@all - @num) / 2); }
+.left {  float: left;  }.right{float: right}
+.clear {  zoom: 1; &:after {  clear: both;  content: "";  display: table;  } &:before {  content: "";  display: table;  } }
+.hide {  display: none;  }  .angularEnd {  display: none;  }  .linkMouse {  cursor: pointer;  }
+//.all() 用法 传入
+.allHeight(@all:10,@num:10,@mTop:0) {  @item: 100% / @all;  height: @item * @num;  .clear; }
+

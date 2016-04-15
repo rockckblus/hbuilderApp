@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--subWebView 历史记录图标 浮动-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <style>
+        html, body {
+            height: 100%;
+            overflow: hidden;
+            margin: 0px;
+        }
+    </style>
+</head>
+
+<body ng-controller="bodyAll">
+<div moveobj src="../../../Public/images/fahuo/fahuo_tip.png" url='Member/car/index.html'
+     trueNet='true'
+     style="width: 100%;height: 100%">
+    <img style="width: 100%;height: 100%;" src="../../../Public/images/fahuo/fahuo_tip.png" alt=""/>
+</div>
+</body>
+
+<script src="../../../Public/js/mui.min.js"></script>
+<script src="../../../Public/js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../Public/js/sea.js" type="text/javascript" charset="utf-8"></script>
+<script src="http://192.168.0.5:8080/target/target-script-min.js#anonymous" type="text/javascript"></script>
+<script>
+    mui.init();
+    seajs.config({
+        debug: false
+    });
+    mui.plusReady(function () {
+        seajs.use(["../../controller/public/seaMain.js", '../../controller/goods/history.js'], function () {
+            angular.element(document).ready(function () {
+                angular.bootstrap(window.document, ["city"]); //启动angular
+
+
+            })
+        });
+    });
+</script>

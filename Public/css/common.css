@@ -1,0 +1,65 @@
+/*----------------------------- 布局样式 start ----------------------------------*/
+html,body{ 
+	margin:0px; 
+	height:100%; 
+	line-height: 1.6rem;
+	font-size: 14px;
+
+}
+body,input{
+	font-family: "微软雅黑";
+} 
+.w{
+	width: 100%;
+	padding: 0 1rem;
+}
+.c{
+	margin: 0 auto;
+}
+ul{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.mui-content{
+	height: 100%;
+	background-color: #eee;
+}
+.mui-content .container{
+	height: 100%;
+}
+/*----------------------------- 布局样式 end ----------------------------------*/
+/*----------------------------- 公共样式 end ----------------------------------*/
+.r_border_button{
+	margin-top: 1.36rem;
+	margin-bottom: 6rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,13 @@
+.mui-content .r_history_address_panel:last-child{
+	margin-bottom: 8rem;
+}
+.mui-pull-bottom-tips {
+	text-align: center;
+	background-color: #efeff4;
+	font-size: 15px;
+	line-height: 40px;
+	color: #777;
+}
+.scroll_top{
+	top: 3rem;
+}

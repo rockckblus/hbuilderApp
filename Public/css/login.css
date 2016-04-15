@@ -1,0 +1,41 @@
+.mui-content .container{
+	position: relative;
+	background: url(../images/login/login_bg_01.jpg);
+	background-size: cover;
+}
+.mui-content .logo_container,
+.mui-content .login_container,
+.mui-content .button_container
+{
+	width: 86%;
+	position: absolute;
+	margin-left: -43%;
+	left: 50%;
+}
+
+.mui-content .logo_container{
+	top: 6%;
+}
+.mui-content .login_container{
+	top: 45%;
+	padding: 0 0.6rem;
+	border: #fff 1px solid;
+	border-radius: 6px;
+	background-color: rgba(255,255,255,0.36);
+}
+.mui-content .login_container>.r_input:first-child{
+	border-bottom: #fff 1px solid;
+}
+.mui-content .login_container>.r_input:first-child i{
+	background-color: transparent;
+	background: url(../images/icon/icon_telephone_white.png);
+	background-size: cover;
+}
+.mui-content .login_container>.r_input:last-child i{
+	background-color: transparent;
+	background: url(../images/icon/icon_lock_white.png);
+	background-size: cover;
+}
+.mui-content .button_container{
+	top: 75%;
+}

@@ -1,0 +1,7 @@
+.confirmation_order>[role="panel"]{
+	margin-bottom: 0.36rem;
+}
+.confirmation_order>.r_singleline_container{
+	padding-left: 0.86rem;
+    padding-right: 0.86rem;
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<!--地址添加页面可预加载-->
+<head>
+    <meta charset="utf-8">
+    <title>addArea</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="../../../Public/css/mui.min.css">
+    <link rel="stylesheet" href="../../../Public/css/default/addArea.css">
+    <link rel="stylesheet" href="../../../Public/css/goods/touchThreeFh.css"/>
+    <style type="text/css">
+        body, html, #newMap {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            margin: 0;
+            font-family: "微软雅黑";
+        }
+    </style>
+</head>
+
+<body ng-controller="bodyAll" class="allHeight" style="background-color:#fff ">
+<div class="allHeight" ng-controller="addArea">
+    <div class="mui-content-padded allHeight ">
+        <div class="rightDivInput allHeight" >
+            <areainput></areainput>
+        </div>
+    </div>
+
+    <touch-three-fh tpl-one="subDate"></touch-three-fh>
+    <style>
+        #touchBack {
+            top: 0px;
+        }
+    </style>
+</div>
+</body>
+<script src="../../../Public/js/mui.min.js"></script>
+<script src="../../../Public/js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../Public/js/sea.js" type="text/javascript" charset="utf-8"></script>
+<!--<script src="http://192.168.0.5:8080/target/target-script-min.js#anonymous" type="text/javascript" charset="utf-8"></script>-->
+<script>
+    window.BMap_loadScriptTime = (new Date).getTime();
+</script>
+<script src="../../../Public/js/baiduApi/baiduApi.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../Public/js/baiduApi/feature.min.js" type="text/javascript" charset="utf-8"></script>
+
+<script>
+    seajs.config({
+        debug: false
+    });
+    mui.plusReady(function () {
+        seajs.use(["../../controller/public/seaMain.js", '../../controller/default/addArea.js'], function () {
+            angular.element(document).ready(function () {
+                angular.bootstrap(window.document, ["city"]); //启动angular
+
+
+            })
+        })
+    })
+</script>
+
+</html>

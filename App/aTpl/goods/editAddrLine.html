@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../../../Public/css/mui.min.css" />
+		<link rel="stylesheet" href="../../../Public/css/component.css" /> 
+		<link rel="stylesheet" href="../../../Public/css/common.css" />
+		<link rel="stylesheet" href="../../../Public/css/swiper/swiper.3.2.0.min.css" />
+		<link href="../../../Public/css/mui.picker.css" rel="stylesheet" />
+		<link href="../../../Public/css/mui.poppicker.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../../Public/css/goods/touchThreeFh.css" />
+		<link rel="stylesheet" href="../../../Public/css/fh.css" />
+	</head>
+
+	<body ng-controller="addeline">
+		<topnav></topnav>
+		<div class="mui-content">
+			<div role='calendar' class="calendarLocal">
+				<div class="title">装货日期-{{mouth}}</div>
+				<div class="button_prev"></div>
+				<div class="button_next"></div>
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						<div ng-repeat="date in dates" ng-click="selectTime($index)" class="{{date.cssSty}}" on-finish-render-filters>
+							<span>{{date.week}}</span>
+							<span>{{date.day}}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="bottomBtn">
+				<button id="saveAll" class="saveAll">保存全部</button>
+				<button id="cancelToday" class="cancelToday">该日不发货</button>
+			</div>
+			<div class="mui-scroll-wrapper editRoadInfoList">
+				<div class="mui-scroll">
+					<!--地址输入控件 获取预加载 addArea.html ,封装到directive addarea 里面，一个页面只能加载一次这个控件，
+							所以使用时候 addarea 注入时候，注意作用域的位置,此处是发货地址，和收货地址 div  
+							声明的时候 把 绑定的class 传过去 click的 value值 取 属性 attrClcikVal 可把参数 写入 {{obj}}里面, 
+							重新绑定的自定义事件 名称 为 resBind
+       				 		addClickValType 为类型 是需要编辑的 ，还是 需要新加的 此处已经不需要 判断 是否起始地，
+       				 		因为默认 已经 有起始地 地址，直接视为编辑
+							startEnd('start','end')  addClickValType('add','edit')
+       	 				-->
+					<!--地址列表组件-->
+					<div class="r_address_list_2" role="list" addareapre="addArea">
+						<!--装货地址列表-->
+						<ul class="list"><!--addrdata.-->
+							<li ng-repeat="loadaddr in addrdata.startAddrLst" class="editArea" addClcikVal="{{loadaddr}}" ng-class="addArea" addClickValType="edit" startEnd="start" LineBidding='true'>
+								<span>装-{{$index+1}}</span>
+								<div class="startAddrItem" position="{{$index}}">
+									<strong>{{loadaddr.addr}}</strong>
+									<br />
+									<small>{{loadaddr.psn_name}} {{loadaddr.psn_tel}}</small>
+								</div>
+								<!--<i class="{{loadaddr.img}}" role="icon" position="{{$index}}" type="start"></i>-->
+							</li>
+						</ul>
+						<!--装货时间-->
+						<div class="selectTime" type="start" day="{{addrdata.day}}" stime="{{addrdata.startAddrLst[0].stime}}" etime="{{addrdata.startAddrLst[0].etime}}" state="{{addrdata.startAddrLst[0].state}}">
+							<span>装货时间段</span>
+							<!--<span class="r"><i class="r_icon_cn_ruyue ruyue" role="icon" ng-if="addrdata.startAddrLst[0].state=='01'"></i></span>
+							<span class="r"><i class="r_icon_cn_jinkuai jinkuai" role="icon" ng-if="addrdata.startAddrLst[0].state=='02'"></i></span>
+							<span class="r"><i class="r_icon_urgency ji" role="icon" ng-if="addrdata.startAddrLst[0].state=='03'"></i></span>-->
+							<div>
+								<span>{{addrdata.startAddrLst[0].stime}}<i class="r_icon_arrow_down_gray" role="icon"></i></span>
+								<span>至</span>
+								<span>{{addrdata.startAddrLst[0].etime}}
+								<i class="r_icon_arrow_down_gray" role="icon"></i>
+								</span>
+							</div>
+
+						</div>
+						<!--卸货地址列表-->
+						<ul>
+							<li ng-repeat="unloadaddr in addrdata.endAddrLst">
+								<span>卸-{{$index+1}}</span>
+								<div class="endAddrItem" position="{{$index}}" class="editArea" addClcikVal="{{unloadaddr}}" ng-class="addArea" addClickValType="{{unloadaddr.clickType}}" startEnd="end" LineBidding='true'>
+									<strong>{{unloadaddr.addr}}</strong>
+									<br />
+									<small>{{unloadaddr.psn_name}} {{unloadaddr.psn_tel}}</small>
+								</div>
+								<i class="{{unloadaddr.img}}" role="icon" position="{{$index}}" type="end" ng-if="unloadaddr.img!='r_icon_add_gray'"></i>
+							</li>
+						</ul>
+						<!--卸货时间-->
+						<div class="selectTime" type="end" day="{{addrdata.day}}" stime="{{addrdata.endAddrLst[0].stime}}" etime="{{addrdata.endAddrLst[0].etime}}" state="{{addrdata.endAddrLst[0].state}}">
+							<span>卸货时间段</span>
+							<!--<span class="r"><i class="r_icon_cn_ruyue ruyue" role="icon" ng-if="addrdata.endAddrLst[0].state=='01'"></i></span>
+							<span class="r"><i class="r_icon_cn_jinkuai jinkuai" role="icon" ng-if="addrdata.endAddrLst[0].state=='02'"></i></span>
+							<span class="r"><i class="r_icon_urgency ji" role="icon" ng-if="addrdata.endAddrLst[0].state=='03'"></i></span>-->
+							<div>
+								<span>{{addrdata.endAddrLst[0].stime}}<i class="r_icon_arrow_down_gray" role="icon"></i></span>
+								<span>至</span>
+								<span>{{addrdata.endAddrLst[0].etime}}<i class="r_icon_arrow_down_gray" role="icon"></i></span>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<!--时间段的选择控件-->
+			<touch-three-fh tpl-two="selectTime"></touch-three-fh>
+		</div>
+		<script src="../../../Public/js/mui.min.js"></script>
+		<script src="../../../Public/js/jquery-1.7.2.min.js"></script>
+		<script src="../../../Public/js/sea.js"></script>
+		<script src="../../../Public/js/swiper/swiper.3.2.0.jquery.min.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+			mui.plusReady(function() {
+				seajs.use(["../../controller/public/seaMain.js", '../../controller/goods/editAddrLine.js'], function() {
+					angular.element(document).ready(function() {
+						angular.bootstrap(window.document, ['city']);
+					});
+				});
+			});
+			$(function() {
+				//设置高度
+				var h = $(window).outerHeight();
+				$('body').height(h);
+			});
+			mui('.mui-scroll-wrapper').scroll({
+				deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+			});
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,37 @@
+<div class="clear" style="height: 100%" ng-show="touchUi.control">
+    <div class="touchThreeFh" ng-class="touchUi.showControl">
+        <div class="top">
+            <button type="button" id="touchCancel" class="mui-btn mui-btn-outlined">取消</button>
+            <button type="button" id="touchOk" class="mui-btn mui-btn-outlined right">确定</button>
+        </div>
+        <div class="content">
+            <div class="touchDiv" style="margin-top: 45px">
+                <div id="touch1">
+                    <li ng-repeat="vo in touchData.date" class="{{vo.class}}" id="touch1Li{{vo.id}}">{{vo.name}}</li>
+                </div>
+                <div id="touch2">
+                    <li ng-repeat="vo in touchData.time" class="{{vo.class}}" id="touch2Li{{vo.id}}">{{vo.name}}</li>
+                </div>
+                <div id="touch3">
+                    <li ng-repeat="vo in touchData.quick" class="{{vo.class}}" id="touch3Li{{vo.id}}"><img
+                            ng-src="{{vo.name}}"/></li>
+                </div>
+            </div>
+            <div class="poistionDiv">
+                <div class="topW1 ">
+                    <li>起始时间</li>
+                    <li>结束时间</li>
+                    <li>时间描述</li>
+                </div>
+                <div class="topW2" id="thisSelect"></div>
+                <div class="topW3 "></div>
+                <div class="topW4 "></div>
+                <div class="hLine">
+                    <div class="left1"></div>
+                    <div class="left2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="touchBack" ng-show="touchUi.back"></div>
+</div>

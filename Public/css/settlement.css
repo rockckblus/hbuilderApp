@@ -1,0 +1,14 @@
+.settlement{
+	padding-top: 0.36rem;
+}
+.r_settlement_panel,
+.r_pin_text
+{
+	margin-bottom: 2.86rem;
+}
+.r_simple_container{
+	padding: 0;
+}
+.r_simple_container small{
+	color:#666;
+}

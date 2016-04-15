@@ -1,0 +1,76 @@
+@import "g";
+
+@fontSizeS: 3vh;
+@fontSizeB: 8vh;
+@backColor: #212020;
+//背景色
+@red: #DE3542;
+//前景红
+@fontColor: #D9D9D9;
+//文字颜色
+@lineColor: #605E5E;
+//线框颜色
+.allDiv {
+  background-color: @backColor;
+  .allHeight();
+  text-align: center;
+  overflow-y: hidden;
+}
+
+.positonDiv {
+  height: 110px;
+  .mark1 {
+    width: 110px;
+    height: 110px;
+    position: absolute;
+    left: 50%;
+    margin-left: -55px;
+  }
+  .preview {
+    margin: 0 auto;
+    height: 100px;
+    img {
+    }
+  }
+}
+
+#showImgGroup {
+  background-color: @backColor;
+  .allHeight();
+  .topDiv {
+    .allHeight(20, 0.5);
+    .clear;
+  }
+  .topDiv2 {
+    .topDiv;
+    font-size: 2vh;
+    color: @fontColor;
+    .allHeight(20, 1.5);
+  }
+
+  #cutDiv {
+    height: 50%;
+    margin: 0 auto;
+    .clear;
+    .drw {
+      height: 100%;
+    }
+  }
+  #downBut {
+    .allHeight(20, 2);
+    .all();
+    padding-left: 5vh;
+    padding-right: 5vh;
+    color: @fontColor;
+    background-color: @backColor;
+    font-size: 4vh;
+    line-height: 4vh;
+    position: fixed;
+    bottom: 0px;
+  }
+
+}
+
+
+
+

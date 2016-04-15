@@ -1,0 +1,100 @@
+//百度联想下拉directive
+<div class="directiveAll allHeight" >
+
+
+    <div class="addInputDiv">
+        <div class="inputCenter">
+            <div class="leftBack" ng-click="back()">
+                <img id="leftBackImg" ng-src="{{icon.back}}"/>
+            </div>
+            <div class="rightInput">
+                <div class="startEndIcon">
+                    <div id="startEndIconLeft">&nbsp;</div>
+                    <img id="startEndIcon" ng-src="{{inputUiIcon.startEnd}}"/>
+                </div>
+                <textarea ng-model="area.input.default" id="inputAdd" ng-blur="addInputBlur()"
+                          ng-focus="addInputFocus()" placeholder="{{area.input.defaultPlace}}">
+                </textarea>
+            </div>
+            <div class="clear" id="trueInputLine">{{area.input.default}}</div>
+            <div id="clearInput" ng-click="changeInputIcon()">
+                <img id="inputUiIcon" ng-src="{{inputUiIcon.img}}"/>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="reqItemDiv">
+            <div ng-if="!vo.history" ng-repeat="vo in area.slide" class="reqItemDivItem" ng-click="getThisAdd($index)">
+                {{vo.city}} {{vo.district}} {{vo.name}}
+            </div>
+            <div ng-if="vo.history" ng-repeat="vo in area.slide" class="reqItemDivItem" ng-click="getThisAddHistory($index)">
+                {{vo.adrs_detail}}
+            </div>
+        </div>
+
+        <div class="dateDiv" id="subDate" ng-show="subDataShow" ng-show="nametTelDivShow">
+            <div class="leftIcon">
+                <img id="leftIconTime" ng-src="{{icon.time}}"/>
+            </div>
+            <div class="timeDirective">
+                <div id="timeLeft">&nbsp;</div>
+                <div id="clickTime">{{from.timeObj.date}}&nbsp;{{from.timeObj.time}}</div>
+                <div id="timeDescriber">
+                    <img style="display: none" id="timeDescriberIcon" ng-src="{{icon.timeDescriberIcon.worry}}"/>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="nameTelDiv" ng-show="nametTelDivShow">
+            <div class="leftPanding">
+                <img id="leftIconHeader" ng-src="{{icon.header}}"/>
+            </div>
+            <div class="inputDiv">
+                <div id="timeLeft2">&nbsp;</div>
+                <div class="inputName">
+                    <input type="text" ng-model="from.name" placeholder="{{from.namePlace}}"/>
+                </div>
+                <div class="inputTel">
+                    <img id="telIconImg" ng-src="{{icon.telIconImg}}"/>
+                    <input type="number" class="left" ng-model="from.tel" placeholder="{{from.telPlace}}"/>
+                </div>
+            </div>
+            <div class="sm" ng-click="smClick()">
+                <img id="sm" ng-src="{{inputUiIcon.sm}}"/>
+            </div>
+        </div>
+
+        <div class="subDiv clear" ng-show="nametTelDivShow">
+            <div class="leftPanding">&nbsp;</div>
+            <button id="subBut" class="mui-btn-danger " ng-click="sub()">提交</button>
+        </div>
+
+    </div>
+    <div class="clear"></div>
+    <div class="mapDiv">
+        <div id="mark">
+            <h3> {{other.noNet}}</h3>
+
+            <div class="clear"></div>
+            <button ng-click="other.resMap()" ng-show="other.resMapShow">重新加载</button>
+        </div>
+        <div id="newMap">
+        </div>
+        <div id="mapCenterIcon" ng-show="mapCenterIconShow" class="mui-icon mui-icon mui-icon-plusempty"></div>
+    </div>
+    <div class="footBar" ng-show="footBarShow">
+        <div id="okGps" ng-click="gpsCenterChange()">
+            <div class="clear" style="margin:0 auto;width: 105px">
+                <img id="okGpsIcon" ng-src="{{inputUiIcon.gps}}"/>
+                <span class="left ml10">确认定位</span>
+            </div>
+        </div>
+    </div>
+    <div class="smListDiv" ng-show="smObj.show">
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell" ng-click="smItemClick($index)" ng-repeat="vo in smObj.list">
+                {{vo.displayName}}---{{vo.phoneNumbers[0].value}}
+            </li>
+        </ul>
+    </div>
+</div>

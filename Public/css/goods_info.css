@@ -1,0 +1,12 @@
+.goods-info{
+	width: 100%;
+	background: #FFFFFF;
+	/*margin-left: 10px;
+	margin-right: 10px;*/
+	font-size: 11px;
+	height: 47px;
+	border: 0px solid #ccc;
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	vertical-align: middle;
+}

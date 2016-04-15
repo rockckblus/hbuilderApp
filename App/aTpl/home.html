@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!--默认首页，判断登录跳转
+1.未登录首页 index.html
+2.货主登录首页 Member/huo/index.html
+-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>物流邦</title>
+    <script src="../../Public/js/mui.min.js"></script>
+    <link href="../../Public/css/mui.min.css" rel="stylesheet"/>
+    <link href="../../Public/css/style.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8">
+        mui.init();
+    </script>
+</head>
+
+<body ng-controller='bodyAll' id="homeIndex" homeIndex="true" style="height: 100%;background-color: #Fefefe;">
+
+<!--banner-->
+<div class="clearThis w100 " style="text-align: center;">
+    <img  public tapimg src="../../Public/images/homeLogo.png" clickimg="../../Public/images/icon_Mt.png" url="http://baidu.com" truenet="true"
+                                                              style="width:60%;margin: 0 auto;"/>
+</div>
+
+<div class="mui-content clearThis" style="background-color: #FEFEFE;">
+
+
+    <div style="width:200px;height: 100px;background-color: red" public gourl="member/getJsonTest.html" truenet="true">
+        <button>goUrlDirective</button>
+    </div>
+
+
+    <form id='login'>
+
+        <!--用户名手机号-->
+        <div class="clearThis all13">
+            <div class="all13_1">
+            </div>
+            <div class="clearThis all13_11" style="border-bottom: solid 1px #d4d4d4;">
+                <div class="iconUser mt10" style="border-right: solid 1px #d4d4d4;padding-right: 3px;">
+                    <img class="left w100 " src='../../Public/images/Icon_Mt.png'/>
+                </div>
+                <div class="all13_11">
+                    <input class="left" id='name' type="text" placeholder='请输入手机号'
+                           style="border:0px;background-color: #fff;margin:0px;" ng-focus='nameFoucs()'/>
+                    <!--错误信息-->
+                    <div style="color: red;position:relative;top:-60px;font-size: 12px; height: 20px;">{{mess}}</div>
+
+                </div>
+            </div>
+        </div>
+
+        <!--密码-->
+        <div class="clearThis all13 mt20">
+            <div class="all13_1"></div>
+            <div class="clearThis all13_11" style="border-bottom: solid 1px #d4d4d4;">
+                <div class="iconUser mt10" style="border-right: solid 1px #d4d4d4;padding-right: 3px;">
+                    <img class="left w100 " src='../../Public/images/icon_ok.png'/>
+                </div>
+                <div class="all13_11">
+                    <input class="left " id='password' type="password" placeholder='请输入验证码'
+                           style="border:0px;background-color: #fff;margin:0px;width: 50%;" ng-focus='nameFoucs()'/>
+                    <span class="right mui-btn button " style="font-size: 12px;color: #F98235;"
+                          ng-click='fun.getVerifyCode()' id='getVerifyCode'>获取验证码</span>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="clearThis mt20 all13">
+
+        <div class="clearThis w100">
+            <div class="all13_1"></div>
+            <div class="all13_11">
+                <button class="buttonClick_red clearThis w100 " public gourl="member/index.html" type="button"
+                        style="background-color: #F98235;font-size: 18px;color: #fff;font-weight: bold;padding: 8px;">登录
+                </button>
+            </div>
+        </div>
+
+
+        <div class="clearThis w100 mt20">
+            <div class="all13_1"></div>
+            <div class="all13_11 goUrl" style="font-size:20px;text-align:center;">我是认证货主</div>
+        </div>
+
+    </div>
+</div>
+</body>
+
+<script src="../../Public/js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../Public/js/sea.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    seajs.config({
+        debug: false
+    });
+    mui.plusReady(function () {
+        seajs.use(["../controller/public/seaMain.js", '../controller/home.js'], function () {
+            angular.element(document).ready(function () {
+                angular.bootstrap(window.document, ["city"]); //启动angular
+            })
+        })
+    })
+</script>
+<script type="text/javascript">
+    //测试输出 kkjkjkkk用
+</script>
+
+</html>

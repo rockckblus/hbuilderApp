@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="../../../Public/css/mui.min.css">
+</head>
+
+<body ng-controller="bodyAll" style="background: #F2EEEB;height: auto;padding-bottom: 0;">
+<topnav></topnav>
+<div class="mui-content" >
+    <div id="content">
+        <button go-baidu-map lat="117.128678" lng="39.102503">go</button>
+    </div>
+</div>
+</body>
+
+<script src="../../../Public/js/mui.min.js"></script>
+<script src="../../../Public/js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../Public/js/sea.js" type="text/javascript" charset="utf-8"></script>
+<!--<script src="http://192.168.0.5:8080/target/target-script-min.js#anonymous" type="text/javascript" charset="utf-8"></script>-->
+
+<script>
+    seajs.config({
+        debug: false
+    });
+    mui.plusReady(function () {
+        seajs.use(["../../controller/public/seaMain.js","../../directive/js/default/block/block.goBaiduMap.directive.js"], function () {
+            angular.element(document).ready(function () {
+                angular.bootstrap(window.document, ["city"]);
+            })
+        });
+    });
+</script>
+
+</html>
