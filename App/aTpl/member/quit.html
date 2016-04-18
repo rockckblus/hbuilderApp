@@ -20,8 +20,9 @@
      * 16/2/5 */
     function funcBack() {
         var all = plus.webview.all();
+        var master = plus.webview.getLaunchWebview();
         for (var vo in all) {
-            if (all[vo].id != 'HBuilder') {
+            if (all[vo].id != master.id) {
                 plus.webview.close(all[vo].id);
             }
         }
@@ -33,8 +34,8 @@
     function clearCookie(funcBack) {
         localStorage.clear();
         setTimeout(function () {
-
-            var loginId = plus.webview.getWebviewById('HBuilder');
+            var master = plus.webview.getLaunchWebview();
+            var loginId = plus.webview.getWebviewById(master.id);
             mui.fire(loginId, 'quit');//给login 发送 quit事件
             funcBack();
         }, 1000);

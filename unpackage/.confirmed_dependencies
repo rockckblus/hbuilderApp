@@ -258,7 +258,8 @@
       "App/controller/public/md5.js",
       "Public/images/icon/icon_other_red.png",
       "Public/images/icon/icon_equipment_red.png",
-      "Public/images/icon/icon_abnormity_red.png"
+      "Public/images/icon/icon_abnormity_red.png",
+      "Public/images/btn_check_c.png"
     ],
     "refer": []
   },

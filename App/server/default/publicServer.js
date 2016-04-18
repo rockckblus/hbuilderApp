@@ -15,7 +15,8 @@ define(function (require) {
         this.goUrl = function (url, obj) {
             if (url) {
                 if (url == '../../../../../aTpl/login.html') {
-                    var id = 'HBuilder';
+                    var h = plus.webview.getLaunchWebview();
+                    var id = h.id;
                     if (plus.webview.getWebviewById(id)) {//判断指定id的 webView 是否被打开
                         mui.openWindow({
                                 url: url,
@@ -35,7 +36,7 @@ define(function (require) {
                             url: url,
                             id: url,
                             extras: obj,
-                            createNew:false,
+                            createNew: false,
                             show: {
                                 autoShow: true
                             }
@@ -49,7 +50,7 @@ define(function (require) {
                     url: url,
                     id: url,
                     extras: obj,
-                    createNew:true,
+                    createNew: true,
                     show: {
                         autoShow: false
                     }
@@ -75,7 +76,7 @@ define(function (require) {
                  * 超时之后执行的方法,关闭waiting，跳转到错误提示页面
                  * 15/11/11 */
                 var overTimeFun = function () {
-                    console.log('url',url);
+                    console.log('url', url);
 
                     _this.closeLeftNav();//关闭侧栏
 
