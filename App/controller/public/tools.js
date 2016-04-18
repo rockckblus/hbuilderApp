@@ -55,7 +55,7 @@ define(function (require) {
             detail = detail.substring(0, 3);
 
             if (detail.indexOf("北京") < 0 && detail.indexOf("天津") < 0 && detail.indexOf("石家庄") < 0 && detail.indexOf("唐山") < 0 && detail.indexOf("秦皇岛") < 0 && detail.indexOf("邯郸") < 0 && detail.indexOf("邢台") < 0 && detail.indexOf("保定") < 0 && detail.indexOf("张家口") < 0 && detail.indexOf("承德") < 0 && detail.indexOf("沧州") < 0 && detail.indexOf("廊坊") < 0 && detail.indexOf("衡水") < 0) {
-                return  level1 + level2 + level3 + oldDetail
+                return level1 + level2 + level3 + oldDetail
             } else {
                 return oldDetail;
             }
@@ -134,7 +134,7 @@ define(function (require) {
                 }
 
 
-                 console.log('postData'+ JSON.stringify(endData));
+                console.log('postData' + JSON.stringify(endData));
                 //                              console.log('meorUrl==='+ getMoreUrl);
                 $http({
                     url: getMoreUrl,
@@ -381,8 +381,8 @@ define(function (require) {
 
             var thisView = mui.currentWebview;
             var thisV = plus.webview.currentWebview().opener(); //获取创建者
-
-            if (thisView.id == 'HBuilder') { //判断首页
+            var master = plus.webview.getLaunchWebview();
+            if (thisView.id == master.id) { //判断首页
                 thisV = thisView;
             }
             if (thisV.id == 'leftNav') {
